@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
+
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3490dc',
+                        'secondary': '#ffed4a',
+                        'danger': '#e3342f',
+                    }
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <form class="signup-form">
+        <div class="flex flex-col items-center justify-center h-screen">
+            <div class="w-96">
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
+                        type="email" id="email" name="email"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
+                        type="text" id="username" name="email"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
+                        type="password" id="password" name="password"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Repeat Password</label>
+                    <input class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
+                        type="password" id="reppassword" name="password"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="mb-4">
+                    <div class="errorModal bg-red-500 p-2 rounded-md text-white hidden mb-2">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                            height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+                            </path>
+                        </svg>
+                    </div>
+
+                    <div class="successModal bg-green-500 p-2 rounded-md text-white  hidden mb-2">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
+                            height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z">
+                            </path>
+                        </svg>
+                    </div>
+
+                    <button id="submit" type="submit"
+                        class="login-button w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Sign up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+    <script type="module" src="Signup.js"></script>
+
+</body>
+
+</html>
