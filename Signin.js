@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js'
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCTXicg-uyzAQyd62hwMfh0RHtRgd-bCBQ",
@@ -26,11 +26,15 @@ const ErrorSvg = `<svg stroke="currentColor" fill="currentColor" stroke-width="0
                         </svg>`
 
 
+//provider
+const provider = new GoogleAuthProvider();
+const fbProvider = new FacebookAuthProvider();
 
 const errorModal = document.querySelector('.errorModal')
 const icon = document.querySelector('.icon')
 const text = document.querySelector('.text')
 let isLoading = false
+
 function editModal(message) {
   icon.innerHTML = ErrorSvg
   text.innerHTML = message
@@ -52,13 +56,21 @@ loginForm.addEventListener('submit', (e) => {
   const emailValue = email.value;
   const passwordValue = password.value;
 
+
+  if (!email?.value || !password?.value) {
+    editModal('Please fill all fields');
+    logInButton.innerHTML = 'Sign in'
+    isLoading = false
+    return;
+  }
+
   signInWithEmailAndPassword(auth, emailValue, passwordValue)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log('User signed in:', user);
 
       if (user.emailVerified) {
-        window.location.href = '/dashboard.html';
+       window.location.href = 'account/dashboard.html';
       } else {
         editModal('Please verify your email first.');
         logInButton.innerHTML = 'Sign in'
@@ -77,12 +89,12 @@ loginForm.addEventListener('submit', (e) => {
         isLoading = false
       }
 
-      if(error.code === 'auth/wrong-password') {
+      if (error.code === 'auth/wrong-password') {
         editModal('Wrong password');
         logInButton.innerHTML = 'Sign in'
         isLoading = false
       }
-      if(error.code === 'auth/too-many-requests') {
+      if (error.code === 'auth/too-many-requests') {
         editModal('Too many requests. Try again later.');
         logInButton.innerHTML = 'Sign in'
         isLoading = false
@@ -93,3 +105,44 @@ loginForm.addEventListener('submit', (e) => {
 });
 
 
+
+const googleButton = document.querySelector('.googleAuth')
+const facebookAuth = document.querySelector('.facebookAuth')
+
+
+googleButton.addEventListener('click', () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log('User signed in:', user);
+     window.location.href = 'account/dashboard.html';
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.error('Error signing in:', errorCode, errorMessage);
+      editModal('Error signing in. Please try again later.');
+    });
+})
+
+
+facebookAuth?.addEventListener('click', () => {
+  signInWithPopup(auth, fbProvider)
+    .then((result) => {
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log('User signed in:', user);
+     window.location.href = 'account/dashboard.html';
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.email;
+      const credential = FacebookAuthProvider.credentialFromError(error);
+      console.error('Error signing in:', errorCode, errorMessage);
+      editModal('Error signing in. Please try again later.');
+    });
+})

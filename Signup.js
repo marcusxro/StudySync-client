@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js'
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification,  GoogleAuthProvider, signInWithPopup, FacebookAuthProvider  } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCTXicg-uyzAQyd62hwMfh0RHtRgd-bCBQ",
@@ -13,6 +13,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+const fbProvider = new FacebookAuthProvider();
+
+
 
 const username = document.getElementById('username')
 const email = document.getElementById('email')
@@ -60,10 +64,8 @@ signUpForm?.addEventListener('submit', (e) => {
         .then((userCredential) => {
             const user = userCredential.user;
             console.log('User signed up:', user);
-
             sendEmailVerification(user)
                 .then(() => {
-
                     axios.post('http://localhost:8080/register', {
                         Username: username.value,
                         Email: email.value,
@@ -142,3 +144,46 @@ signUpForm?.addEventListener('submit', (e) => {
             }
         });
 });
+
+
+
+const googleButton = document.querySelector('.googleAuth')
+const facebookAuth = document.querySelector('.facebookAuth')
+
+
+googleButton.addEventListener('click', () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log('User signed in:', user);
+      window.location.href = 'account/dashboard.html';
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.error('Error signing in:', errorCode, errorMessage);
+      editModal('Error signing in. Please try again later.');
+    });
+})
+
+
+facebookAuth?.addEventListener('click', () => {
+  signInWithPopup(auth, fbProvider)
+    .then((result) => {
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log('User signed in:', user);
+      window.location.href = 'account/dashboard.html';
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.email;
+      const credential = FacebookAuthProvider.credentialFromError(error);
+      console.error('Error signing in:', errorCode, errorMessage);
+      editModal('Error signing in. Please try again later.');
+    });
+})

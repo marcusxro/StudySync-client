@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3490dc',
+                        'secondary': '#ffed4a',
+                        'danger': '#e3342f',
+                    }
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <form class="reset-form">
+        <div class="flex flex-col items-center justify-center h-screen">
+            <div class="w-96">
+
+                <div class="mb-[1.3rem] flex gap-2 flex-col">
+                    <div class="font-bold  text-[2rem] leading-[30px]">
+                        Forgot password?
+                    </div>
+                    <div class="text-sm text-[#888]">
+                        No worries, we'll send you reset instructions
+                    </div>
+                </div>
+
+                
+
+                <div class="mb-4">
+                    <input
+                        placeholder="Email"
+                        class="bg-gray-100 border-[1px] border-[#D4D5D7] outline-none w-full p-2 rounded-md"
+                        type="email" id="email" name="email"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="errorModal bg-red-500 p-2 rounded-md text-white hidden mb-2">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                        height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+                        </path>
+                    </svg>
+                </div>
+
+                <div class="successModal bg-green-500 p-2 rounded-md text-white  hidden mb-2">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
+                        height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z">
+                        </path>
+                    </svg>
+                </div>
+
+                
+                <div class="mb-4">
+                    <button id="submit" type="submit"
+                        class="reset-button w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Reset password
+                    </button>
+                </div>
+
+             <div class=" w-full">
+                <a class="text-[#3490dc] underline" href="signin.html">
+                    Back to sign in
+                </a>
+             </div>
+
+                
+            </div>
+        </div>
+    </form>
+
+
+    <script type="module" src="recover.js"></script>
+</body>
+
+</html>
