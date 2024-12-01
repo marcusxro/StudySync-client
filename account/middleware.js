@@ -209,11 +209,7 @@ onAuthStateChanged(auth, (currentUser) => {
             axios.post('http://localhost:8080/getAccountByUid', { Uid: user?.uid })
                 .then((response) => {
                     // User exists, proceed to update the account and upload profile picture if needed
-
-
                     handleAccountCreationOrUpdate(response, formData);
-
-
                 })
                 .catch((error) => {
                     console.log('Error checking user existence:', error);
