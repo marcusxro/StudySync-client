@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/socket.io@4.0.1/dist/socket.io.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#3490dc',
+            'secondary': '#ffed4a',
+            'danger': '#e3342f',
+          }
+        }
+      }
+    }
+
+  </script>
+      <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+
+    }
+
+    body {
+  font-family: "Poppins", sans-serif;
+      color: #333;
+      background-color: #f9f9f9;
+      line-height: 1.6;
+    }
+
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      font-size: 16px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .actions a {
+      padding: 10px 15px;
+      border: 1px solid #007bff;
+      border-radius: 5px;
+      font-size: 14px;
+      color: #007bff;
+    }
+
+    .actions .btn-primary {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .actions .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #565252;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+
+
+    footer {
+      background-color: #fff;
+      text-align: center;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+    }
+
+    footer .social-icons {
+      margin-bottom: 20px;
+    }
+
+    footer .social-icons img {
+      margin: 0 10px;
+      width: 24px;
+    }
+
+    footer .links {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 20px;
+    }
+
+    footer .links div {
+      text-align: left;
+    }
+
+    footer .links a {
+      display: block;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    footer .links a:hover {
+      color: #007bff;
+    }
+
+
+    .bordered {
+      box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+    }
+  </style>
+</head>
+
+<body class="bg-[#F8FAFB]">
+  
+  <header-home></header-home>
+
+  <div
+    class="absolute z-[20] left-[0px] w-[200px] h-[100px] md:w-[125px] md:h-[50px] lg:w-[250px] lg:h-[150px]   lg:w-[500px] lg:h-[300px] top-[130px] flex items-center justify-center opacity-[0.5]">
+    <img src="./assets/images/Go Green - Forest.png" alt="">
+  </div>
+
+  <div
+    class="absolute z-[20] right-[0px] w-[250px] h-[150px] md:w-[125px] md:h-[50px] lg:w-[250px] lg:h-[150px]   lg:w-[500px] lg:h-[300px] top-[150px] flex items-center justify-center opacity-[0.5]">
+    <img src="./assets/images/Go Green - Round Short Tree.png" alt="">
+  </div>
+
+  <main class="hero-section max-w-[1200px] p-2 relative z-[120] justif
+  y-center mx-auto w-full">
+
+
+    <div class="hero-text w-full mt-[3rem] p-2">
+      <div class="flex flex-col justify-center text-center w-full">
+        <div class="flex flex-col items-center gap-2 justify-center">
+          <div class="w-[50px] h-[50px] overflow-hidden border-[1px] rounded-full border-[#e3e1e1]">
+            <img class="w-full h-full object-cover" src="./assets/images/Avatars - Default with Backdrop.png" alt="">
+          </div>
+
+          <div class="font-bold text-[2rem] text-[#565252]"> Helping people <span>succeed</span> in study through the power of buddy.
+          </div>
+        </div>
+
+        <p class="text-sm w-full max-w-[1000px] mx-auto my-2 text-[#888]">
+          StudySync is an innovative online platform designed to make studying more collaborative, effective, and
+          enjoyable. Whether you’re a student looking to connect with peers, share notes, or form study groups, or a
+          lifelong learner seeking accountability and support, StudySync has everything you need to thrive academically.
+        </p>
+
+      </div>
+
+
+      <div class="flex flex-col md:flex-row gap-5 items-start mt-[3rem]">
+        <div class="bg-[#ECECEC] p-5 rounded-lg justify-center text-center bordered border-[1px] border-[#e3e1e1]">
+          <h2 class="text-[#565656] font-bold">
+            Mission
+          </h2>
+
+          <p class="text-sm text-[#9b9e9c] w-full max-w-[1000px] mx-auto"> Our mission is to empower learners worldwide
+            by fostering collaboration, providing valuable resources, and
+            creating a supportive community where everyone can achieve their academic goals and develop lifelong
+            learning
+            skills.
+          </p>
+        </div>
+
+
+
+        <div class="bg-[#ECECEC] p-5 rounded-lg justify-center text-center bordered border-[1px] border-[#e3e1e1]">
+          <h2 class="text-[#565656] font-bold">
+            Values
+          </h2>
+
+          <p class="text-sm text-[#9b9e9c] w-full max-w-[1000px] mx-auto"> Our mission is to empower learners worldwide
+            by fostering collaboration, providing valuable resources, and
+            At StudySync, we believe in:
+          </p>
+
+          <div class="mt-5 text-white text-sm text-left w-full flex flex-col gap-5 justify-center">
+
+            <div class="flex flex-col gap-1 justify-center text-center items-center w-full">
+
+              <div class="font-semibold text-[#565656]">Collaboration</div>
+              <p class="text-sm text-[#9b9e9c] w-full max-w-[1000px] mx-auto">
+                Learning is better when shared.
+              </p>
+            </div>
+
+
+            <div class="flex flex-col gap-1 justify-center text-center items-center w-full">
+              <div class="font-semibold text-[#565656]">
+                Support
+              </div>
+              <p class="text-sm text-[#9b9e9c] w-full max-w-[1000px] mx-auto">
+                Everyone deserves a community that helps them succeed.
+              </p>
+            </div>
+
+
+
+            <div class="flex flex-col gap-1 justify-center text-center items-center w-full">
+              <div class="font-semibold text-[#565656]">
+                Accessibility
+              </div>
+              <p class="text-sm text-[#9b9e9c] w-full max-w-[1000px] mx-auto">
+                Education should be available to all learners.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+
+
+        <div class="bg-[#ECECEC] p-5 rounded-lg justify-center text-center bordered border-[1px] border-[#e3e1e1]">
+          <h2 class="text-[#565656] font-bold">
+            Vision
+          </h2>
+
+          <p class="text-sm text-[#9b9e9c] w-full max-w-[1000px] mx-auto">
+            Our vision is to create a world where learning is accessible, collaborative, and enjoyable for everyone,
+            fostering a global community of empowered learners who achieve their fullest potential through shared
+            knowledge and support.
+          </p>
+        </div>
+
+
+
+
+
+
+
+      </div>
+    </div>
+
+
+    <!-- <div style="margin-top: 80px; margin-Bot: 80px;">
+      <h3 style="font-size: 17px;">
+        <font color="Black"> This website was created and developed by a dedicated team of programmers: </font>
+      </h3>
+      <p style="font-size: 15px;">
+        Castillo, Clark Davies <br>
+        Cayubit, Rio Hillary <br>
+        Cebales, Jan Stephen <br>
+        Colewan, Jenart Blaza <br>
+        Cunanan, Maria Princess <br>
+        De Lara, Sean Ethan L. <br>
+        Dizon, Jefferson C. <br>
+        Donaire, Antonio Gabriel B. <br>
+        Salopaso, Marcus</p>
+    </div> -->
+
+
+    </div>
+
+
+    <div class="my-[5rem] justify-center flex flex-col items-center gap-3">
+
+      <div class="text-center">
+        <h3 class="font-bold text-[2rem]">Join Us</h3>
+        <p class="text-[#888] text-sm w-full max-w-[500px]">Ready to start learning with StudySync? Sign up today and
+          discover the power of collaboration!</p>
+      </div>
+
+      <a href="signup.html" class="cta-btn rounded-[1rem] hover:bg-[#888]">Sign Up for Free</a>
+
+    </div>
+
+
+
+
+
+
+
+    </div>
+
+    <!-- <div class="hero-image">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-qBfmjCkt4XnvnqPZKi0kIEr444hIXq06yQ&s"
+        alt=" Image">
+      <img src="https://cdn.mos.cms.futurecdn.net/cs4kNkULSJeeTjLKo8Bt73.jpg" alt=" Hero Image">
+    </div> -->
+
+
+  </main>
+
+
+    <style>
+      footer {
+        background-color: #f9f9f9;
+        padding: 40px 20px;
+        font-family: Arial, sans-serif;
+        color: #333;
+        border-top: 1px solid #ddd;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Left Section: Logo and Icons */
+      .footer-left {
+        text-align: left;
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+      }
+
+      .footer-logo img {
+        width: 50px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin: 15px 0;
+      }
+
+      .social-icons img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .learn-text {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.5;
+      }
+
+
+      .footer-right {
+        display: flex;
+        gap: 40px;
+        text-align: left;
+      }
+
+      .footer-column h4 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .footer-column a {
+        display: block;
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 5px;
+        text-decoration: none;
+      }
+
+      .footer-column a:hover {
+        color: #007bff;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        font-size: 14px;
+        color: #999;
+        margin-top: 20px;
+      }
+    </style>
+
+
+
+    <footer-home></footer-home>
+  <script src="./account/components.js"></script>
+</body>
+</html>

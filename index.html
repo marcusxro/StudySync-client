@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home | StudySync</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -18,18 +18,463 @@
                 }
             }
         }
+
+
     </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            font-size: 16px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .actions a {
+            padding: 10px 15px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #007bff;
+        }
+
+        .actions .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .actions .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #565252;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+
+        footer .social-icons {
+            margin-bottom: 20px;
+        }
+
+        footer .social-icons img {
+            margin: 0 10px;
+            width: 24px;
+        }
+
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        footer .links div {
+            text-align: left;
+        }
+
+        footer .links a {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        footer .links a:hover {
+            color: #007bff;
+        }
+
+
+        .bordered {
+            box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+            color: #333;
+            border-top: 1px solid #ddd;
+
+
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Left Section: Logo and Icons */
+        .footer-left {
+            text-align: left;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            width: 50px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .learn-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+
+        .footer-right {
+            display: flex;
+            gap: 40px;
+            text-align: left;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: #007bff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            margin-top: 20px;
+        }
+
+        .bordered {
+            box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-[#F8FAFB]">
 
-    <h1 class="text-3xl font-bold underline text-clifford text-red-500">
-        Hello world!
+    <header-home></header-home>
+
+    <div class="h-auto max-w-[1200px] mx-auto w-full my-[5rem] px-4">
+
+        <div class="flex flex-col gap-2">
+            <div class="text-[#565252] text-[2.5rem] font-bold text-center">
+                Enhancing Collaboration in
+                Remote Learning
+            </div>
+            <div class="text-[#888] max-w-[1000px] mx-auto text-center">
+                A groundbreaking platform designed to foster peer collaboration, accountability, and improved
+                learning outcomes for students in remote, hybrid, and traditional learning environments.
+            </div>
+        </div>
 
 
-        <a href="signin.html">s</a>
-    </h1>
+        <div class="mt-[2rem] flex items-center gap-2 justify-center">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 15 14" fill="none">
+                    <ellipse cx="7.5" cy="7" rx="7.5" ry="7" fill="#E4E4E4" />
+                    <path
+                        d="M9.525 4.48837C9.76369 4.48837 9.99261 4.40997 10.1614 4.27041C10.3302 4.13084 10.425 3.94156 10.425 3.74419C10.425 3.54682 10.3302 3.35753 10.1614 3.21797C9.99261 3.07841 9.76369 3 9.525 3C9.2863 3 9.05739 3.07841 8.8886 3.21797C8.71982 3.35753 8.625 3.54682 8.625 3.74419C8.625 3.94156 8.71982 4.13084 8.8886 4.27041C9.05739 4.40997 9.2863 4.48837 9.525 4.48837ZM7.905 9.66046L8.355 8.02326L9.3 8.76744V11H10.2V8.2093L9.255 7.46512L9.525 6.34884C9.83334 6.64098 10.2138 6.87515 10.6407 7.0356C11.0676 7.19605 11.5311 7.27907 12 7.27907V6.53488C11.208 6.54605 10.47 6.20372 10.065 5.64186L9.615 5.04651C9.453 4.82326 9.165 4.67442 8.85 4.67442C8.715 4.67442 8.625 4.71163 8.49 4.71163L6.15 5.53023V7.27907H7.05V6.01395L7.86 5.75349L7.14 8.76744L4.935 8.39535L4.755 9.13953L7.905 9.66046ZM3.9 5.7907C3.78065 5.7907 3.66619 5.7515 3.5818 5.68171C3.49741 5.61193 3.45 5.51729 3.45 5.4186C3.45 5.31992 3.49741 5.22528 3.5818 5.1555C3.66619 5.08571 3.78065 5.04651 3.9 5.04651H5.25V5.7907H3.9ZM4.35 4.30233C4.23065 4.30233 4.11619 4.26312 4.0318 4.19334C3.94741 4.12356 3.9 4.02892 3.9 3.93023C3.9 3.83155 3.94741 3.7369 4.0318 3.66712C4.11619 3.59734 4.23065 3.55814 4.35 3.55814H6.6V4.30233H4.35ZM3.45 7.27907C3.33065 7.27907 3.21619 7.23987 3.1318 7.17009C3.04741 7.10031 3 7.00566 3 6.90698C3 6.80829 3.04741 6.71365 3.1318 6.64387C3.21619 6.57409 3.33065 6.53488 3.45 6.53488H5.25V7.27907H3.45Z"
+                        fill="#888888" />
+                </svg>
+            </div>
 
+            <div class="w-full max-w-[50px] h-[2px] bg-[#E4E4E4]">
+
+            </div>
+
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 15 14" fill="none">
+                    <ellipse cx="7.5" cy="7" rx="7.5" ry="7" fill="#E4E4E4" />
+                    <path
+                        d="M4.875 10C4.63437 10 4.42846 9.93478 4.25725 9.80433C4.08604 9.67389 4.00029 9.51689 4 9.33333V6C4 5.81667 4.08575 5.65978 4.25725 5.52933C4.42875 5.39889 4.63467 5.33356 4.875 5.33333H5.3125V4.66667C5.3125 4.20556 5.52585 3.81256 5.95256 3.48767C6.37927 3.16278 6.89508 3.00022 7.5 3C8.10492 2.99978 8.62087 3.16233 9.04787 3.48767C9.47487 3.813 9.68808 4.206 9.6875 4.66667V5.33333H10.125C10.3656 5.33333 10.5717 5.39867 10.7432 5.52933C10.9147 5.66 11.0003 5.81689 11 6V9.33333C11 9.51667 10.9144 9.67367 10.7432 9.80433C10.572 9.935 10.3659 10.0002 10.125 10H4.875ZM7.5 8.33333C7.74062 8.33333 7.94669 8.26811 8.11819 8.13767C8.28969 8.00722 8.37529 7.85022 8.375 7.66667C8.37471 7.48311 8.2891 7.32622 8.11819 7.196C7.94727 7.06578 7.74121 7.00044 7.5 7C7.25879 6.99956 7.05287 7.06489 6.88225 7.196C6.71162 7.32711 6.62587 7.484 6.625 7.66667C6.62412 7.84933 6.70987 8.00633 6.88225 8.13767C7.05462 8.269 7.26054 8.33422 7.5 8.33333ZM6.1875 5.33333H8.8125V4.66667C8.8125 4.38889 8.6849 4.15278 8.42969 3.95833C8.17448 3.76389 7.86458 3.66667 7.5 3.66667C7.13542 3.66667 6.82552 3.76389 6.57031 3.95833C6.3151 4.15278 6.1875 4.38889 6.1875 4.66667V5.33333Z"
+                        fill="#888888" />
+                </svg>
+            </div>
+            <div class="w-full max-w-[50px] h-[2px] bg-[#E4E4E4]">
+
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 15 14" fill="none">
+                    <ellipse cx="7.5" cy="7" rx="7.5" ry="7" fill="#E4E4E4" />
+                    <path
+                        d="M7.5 3C5.01472 3 3 4.93078 3 7.3125C3 9.69422 5.01472 11.625 7.5 11.625C9.98528 11.625 12 9.69422 12 7.3125C12 4.93078 9.98528 3 7.5 3ZM10.2577 9.95531C9.57391 10.6087 8.66077 10.9946 7.69623 11.038C6.73169 11.0814 5.78484 10.7791 5.04017 10.19C4.29551 9.60094 3.80637 8.76726 3.66808 7.85143C3.52978 6.9356 3.75223 6.00323 4.29208 5.23599C4.83194 4.46875 5.65052 3.92161 6.58832 3.70118C7.52613 3.48075 8.51598 3.60281 9.36501 4.04359C10.214 4.48437 10.8614 5.21228 11.181 6.0855C11.5006 6.95872 11.4695 7.91468 11.0938 8.76712C10.898 9.21131 10.614 9.61484 10.2577 9.95531Z"
+                        fill="#888888" />
+                    <path
+                        d="M7.5 9.61251C8.01717 9.61251 8.51316 9.41562 8.87886 9.06516C9.24455 8.7147 9.45 8.23938 9.45 7.74376H5.55C5.55 8.23938 5.75544 8.7147 6.12114 9.06516C6.48684 9.41562 6.98283 9.61251 7.5 9.61251ZM6.55794 6.81463L6.94205 6.37288L5.85 5.50077L4.75794 6.37288L5.14205 6.81463L5.85 6.24924L6.55794 6.81463ZM8.05794 6.37288L8.44205 6.81463L9.15 6.24924L9.85794 6.81463L10.2421 6.37288L9.15 5.50077L8.05794 6.37288Z"
+                        fill="#888888" />
+                </svg>
+            </div>
+            <div class="w-full max-w-[50px] h-[2px] bg-[#E4E4E4]">
+
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 15 14" fill="none">
+                    <ellipse cx="7.5" cy="7" rx="7.5" ry="7" fill="#E4E4E4" />
+                    <g clip-path="url(#clip0_2_36)">
+                        <path
+                            d="M11.9381 6.47917L7.5 4.23538L3.06187 6.47917L7.5 8.72267L10.5 7.20601V8.66667H11.25V6.82713L11.9381 6.47917Z"
+                            fill="#888888" />
+                        <path
+                            d="M4.875 9.10417V8.03521L7.5 9.36229L10.125 8.03521V9.10417C10.125 9.53292 9.74475 9.86688 9.28012 10.0778C8.80612 10.293 8.17575 10.4167 7.5 10.4167C6.82425 10.4167 6.19425 10.293 5.71987 10.0778C5.25525 9.86688 4.875 9.53292 4.875 9.10417Z"
+                            fill="#888888" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_2_36">
+                            <rect width="9" height="7" fill="white" transform="translate(3 4)" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+
+
+        <div class="mt-[3rem] flex gap-5 justify-center items-start flex-col lg:flex-row">
+
+            <div class="bg-[#ECECEC] p-5 flex-col bordered justify-center flex items-center rounded-[1rem] w-full">
+
+                <div class="text-[1rem] text-[#888888] font-semibold">Collaborate anytime</div>
+                <p class="text-sm text-[#C3C2C2]">You can start anytime, anywhere!</p>
+
+                <div class="w-[220px] h-[200px] mt-3">
+                    <img class="w-full h-full object-cover" src="./assets/images/Humaaans - 3 Characters.png" alt="">
+                </div>
+
+
+            </div>
+
+            <div class="bg-[#ECECEC] p-5 flex-col bordered justify-center flex items-center rounded-[1rem] w-full">
+                <div class="text-[1rem] text-[#888888] font-semibold">Build Connections</div>
+                <p class="text-sm text-[#C3C2C2] w-full max-w-[270px] text-center">Build your web of connections around
+                    the world!</p>
+                <div class="w-[250px] h-[230px] mt-3">
+                    <img class="w-full h-full object-cover" src="./assets/images/The Little Things - UI Design.png"
+                        alt="">
+                </div>
+
+                <a href="signup.html" class="cta-btn rounded-[1rem] hover:bg-[#888] mt-5">Start now with StudySync</a>
+            </div>
+
+            <div class="bg-[#ECECEC] p-5 flex-col bordered justify-center flex items-center rounded-[1rem] w-full">
+                <div class="text-[1rem] text-[#888888] font-semibold">Visualize data</div>
+                <p class="text-sm text-[#C3C2C2] w-full max-w-[270px] text-center">Analyze your in-depth progress</p>
+
+                <div class="w-[220px] h-[200px] mt-3">
+                    <img class="w-full h-full object-cover" src="./assets/images/The Little Things - Working.png"
+                        alt="">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div
+            class="mt-[5rem] flex flex-col gap-5 relative justify-center items-center border-y-[#e3e1e1] border-y-[1px] py-[9rem]">
+
+            <div class="absolute  w-full h-full flex justify-between items-end opacity-[.5]">
+                <div class="w-[200px] h-[85%] overflow-hidden">
+                    <img class="w-full h-full object-cover" src="./assets/images/Wavy Buddies - Big Leaves Plant.png"
+                        alt="">
+
+                </div>
+                <div class="w-[200px] h-[25%] overflow-hidden hidden lg:block">
+                    <img class="w-full h-full object-cover" src="./assets/images/Wavy Buddies - Clouds 1.png" alt="">
+                </div>
+
+                <div class="w-[250px] h-[55%] overflow-hidden hidden lg:block">
+                    <img class="w-full h-full object-cover"
+                        src="./assets/images/Wavy Buddies - Small Leaves Plant 1 (1).png" alt="">
+
+                </div>
+            </div>
+
+            <div class="flex gap-2 items-center relative z-[20] justify-center flex-col lg:flex-row">
+                <div class="w-[50px] h-[50px] mt-3 p-1 border-[1px] border-[#e3e1e1] rounded-full">
+                    <img class="w-full h-full object-cover"
+                        src="./assets/images/Avatars - Default with Backdrop (1).png" alt="">
+                </div>
+                <div class="text-[2rem] font-bold text-[#565252] mt-3 text-center">
+                    Why Choose the StudySync Platform?
+                </div>
+            </div>
+
+
+            <div class="flex gap-5 w-full mt-[2rem] relative z-[20] flex-col md:flex-row">
+                <div
+                    class="bg-[#ECECEC] text-[#565252] font-semibold p-5  flex-col bordered justify-center flex items-center rounded-[1rem] w-full">
+                    Enhanced Learning
+                </div>
+                <div
+                    class="bg-[#ECECEC] text-[#565252]  font-semibold p-5 flex-col bordered justify-center flex items-center rounded-[1rem] w-full">
+                    Collaboration Made Easy
+                </div>
+                <div
+                    class="bg-[#ECECEC] text-[#565252] font-semibold p-5 flex-col bordered justify-center flex items-center rounded-[1rem] w-full">
+                    Increased Motivation
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="mt-[5rem] flex flex-col gap-[2rem] relative justify-center items-center lg:flex-row">
+            <div class="w-full max-w-[600px]">
+                <div class="text-[1.5rem] font-semibold text-[#565252]">Your Study Buddy is Just a Click Away!</div>
+                <p class="text-[#888]">
+                    Finding the right study partner has never been easier. With just a few clicks, you can connect with
+                    students who share your academic interests, study preferences, and goals
+                </p>
+
+
+                <div class="mt-[2rem] flex items-start">
+                    <a class="bg-[#565252] px-5 py-4 hover:bg-[#888] rounded-[1rem] text-white flex items-center gap-2"
+                        href="./account/find.html">
+                        Find study buddy
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
+                            height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z">
+                            </path>
+                        </svg>
+
+                    </a>
+                </div>
+            </div>
+
+            <div class="max-w-[600px] h-full w-full max-h-[500px] mt-3">
+                <img class="w-full h-full object-cover" src="./assets/images/findd__1_-removebg-preview.png" alt="">
+            </div>
+        </div>
+
+
+    </div>
+
+    <footer-home></footer-home>
+
+    <script src="./account/components.js"></script>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyCTXicg-uyzAQyd62hwMfh0RHtRgd-bCBQ",
+            authDomain: "studysync-a430c.firebaseapp.com",
+            projectId: "studysync-a430c",
+            storageBucket: "studysync-a430c.firebasestorage.app",
+            messagingSenderId: "787702087721",
+            appId: "1:787702087721:web:f0b5704f7e4213b4f61c38"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const navigator = document.querySelector('.navigator');
+    
+            // Listen for authentication state changes
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // User is signed in
+                    navigator.innerHTML = "Dashboard";
+                    navigator.addEventListener("click", () => {
+                        window.location.href = "./account/dashboardUI.html";
+                        console.log("User is signed in");
+                    });
+                } else {
+                    // No user is signed in
+                    navigator.innerHTML = "Sign In";
+                    navigator.addEventListener("click", () => {
+                        window.location.href = "./signin.html";
+                    });
+                }
+            });
+        });
+    </script>
+    
 </body>
 
 </html>

@@ -1,19 +1,19 @@
-class Icon extends HTMLElement{
-    connectedCallback(){
-        this.innerHTML = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+class Icon extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
                             height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
                             <path fill="none" d="M0 0h24v24H0z"></path>
                             <path
                                 d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
                             </path>
                         </svg>`
-    }
+  }
 }
 
 
-class userModal extends HTMLElement{
-    connectedCallback(){
-        this.innerHTML = `
+class userModal extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
          <div
             class="userModal hidden flex fixed top-0 left-0 h-[100vh] bg-red-500 w-screen flex items-center justify-center p-3">
 
@@ -83,13 +83,13 @@ class userModal extends HTMLElement{
 
 
         </div>`
-    }
+  }
 }
 
 
-class interestModal extends HTMLElement{
-    connectedCallback(){
-        this.innerHTML = `
+class interestModal extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
         <div
             class="userInterest hidden  flex fixed top-0 left-0 h-[100vh] bg-red-500 w-screen flex items-center justify-center p-3">
 
@@ -123,19 +123,19 @@ class interestModal extends HTMLElement{
                 </div>
             </div>
         </div>`
-    }
+  }
 }
 
 
-class systemSidebar extends HTMLElement{
-    connectedCallback(){
-        this.innerHTML = `
+class systemSidebar extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
         
     <div class="w-full h-full max-w-[300px] min-w-[300px] flex flex-col">
 
       <div class="flex items-start gap-2 p-2 border-b-[1px] border-b-[#ECECEC] pb-5">
 
-        <div class="profilePicture w-[50px] h-[50px] bg-blue-500 rounded-full">
+        <div class="profilePicture w-[50px] h-[50px] bg-blue-500 rounded-full overflow-hidden">
 <img class="profile-picture w-full h-full object-cover"></img>
         </div>
 
@@ -146,7 +146,7 @@ class systemSidebar extends HTMLElement{
       </div>
 
 
-      <div class="flex flex-col gap-5 mt-5  p-2 h-full justify-between">
+      <div class="flex flex-col gap-5 mt-5  p-2 h-full justify-between dashboardPageClick">
         <div class="flex flex-col gap-5 ">
 
           <div class="flex gap-2 items-center cursor-pointer">
@@ -160,7 +160,7 @@ class systemSidebar extends HTMLElement{
             Dashboard
           </div>
 
-          <div class="flex gap-2 items-center cursor-pointer">
+          <div class="flex gap-2 items-center cursor-pointer findPageClick">
 
             <div>
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px"
@@ -208,11 +208,122 @@ class systemSidebar extends HTMLElement{
       </div>
 
     </div>`
-    }
+  }
 }
 
 
+class headerHome extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+    <header class="w-full">
+
+    <div class="w-full max-w-[1200px] flex justify-between items-center mx-auto">
+
+
+      <div class="logo flex items-center justify-center">
+
+        <div class="w-[40px] h-[40px] overflow-hidden">
+          <img
+          class="w-full h-full object-cover"
+           src="./assets/logo.png" alt="Logo">
+        </div>
+
+        <div class="h-full font-bold">
+          StudySync
+        </div>
+      </div>
+
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="About.html">About</a></li>
+          <li><a href="#Contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex gap-2 items-center">
+        <div class="navigator bg-[#565252] p-2 rounded-[1.3rem] text-white px-5 hover:bg-[#888]">Sign in</div>
+      </div>
+
+    </div>
+  </header>
+    `
+  }
+}
+
+class footerHome extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+     <footer class="relative z-[5000]">
+    <div class="footer-container gap-5 flex flex-col lg:flex-row">
+      <div class="footer-left items-start">
+
+        <div class="logo flex items-center justify-start ">
+
+          <div class="w-[40px] h-[40px] overflow-hidden">
+            <img
+            class="w-full h-full object-cover"
+             src="./assets/logo.png" alt="Logo">
+          </div>
+  
+          <div class="h-full font-bold">
+            StudySync
+          </div>
+        </div>
+
+
+        <div class="social-icons">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/1200px-2021_Facebook_icon.svg.png"
+            alt="Facebook">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
+          <img src="https://i.pinimg.com/474x/e7/fc/c8/e7fcc89530a488a65f0035df69fd6a14.jpg" alt="Instagram">
+        </div>
+        <div class="learn-text">
+          <p>Learn smoothly with StudySync<br>Save countless hours finding your perfect study buddy!</p>
+        </div>
+      </div>
+
+
+      <div class="footer-right flex flex-col lg:flex-row">
+        <div class="footer-column">
+          <h4>System</h4>
+          <a href="./account/dashboardUI.html">Dashboard</a>
+          <a href="#calendar">Calendar</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#settings">Settings</a>
+        </div>
+        <div class="footer-column">
+          <h4>Authentication</h4>
+          <a href="signin.html">Sign in</a>
+          <a href="signup.html">Sign up</a>
+          <a href="recover.html">Forgot Password</a>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <a href="index.html">Home</a>
+          <a href="About.html">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+      <p>© 2024 StudySync. All rights reserved.</p>
+    </div>
+  </footer>
+    `
+  }
+}
 customElements.define('app-icon', Icon)
 customElements.define('user-modal', userModal)
 customElements.define('interest-modal', interestModal)
 customElements.define('system-sidebar', systemSidebar)
+customElements.define('footer-home', footerHome)
+
+customElements.define('header-home', headerHome)
