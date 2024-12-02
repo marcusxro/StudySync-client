@@ -259,15 +259,24 @@
           </p>
         </div>
 
-
-
-
-
-
-
       </div>
+
+
+      
     </div>
 
+
+
+    <div class="my-[5rem] flex items-center justify-center flex-col border-y-[1px] border-y-[#e3e1e1] py-[5rem]">
+
+      <div class="font-bold text-[2rem] text-[#565252]">
+        How StudySync Works
+      </div>
+
+      <p class="text-sm text-[#888] w-full max-w-[800px] text-center">
+        StudySync matches you with learners who share your academic interests, enabling collaboration and meaningful discussions on your favorite topics.
+      </p>
+    </div>
 
     <!-- <div style="margin-top: 80px; margin-Bot: 80px;">
       <h3 style="font-size: 17px;">
@@ -403,5 +412,46 @@
 
     <footer-home></footer-home>
   <script src="./account/components.js"></script>
+
+  
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCTXicg-uyzAQyd62hwMfh0RHtRgd-bCBQ",
+        authDomain: "studysync-a430c.firebaseapp.com",
+        projectId: "studysync-a430c",
+        storageBucket: "studysync-a430c.firebasestorage.app",
+        messagingSenderId: "787702087721",
+        appId: "1:787702087721:web:f0b5704f7e4213b4f61c38"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const navigator = document.querySelector('.navigator');
+
+        // Listen for authentication state changes
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in
+                navigator.innerHTML = "Dashboard";
+                navigator.addEventListener("click", () => {
+                    window.location.href = "./account/dashboardUI.html";
+                    console.log("User is signed in");
+                });
+            } else {
+                // No user is signed in
+                navigator.innerHTML = "Sign In";
+                navigator.addEventListener("click", () => {
+                    window.location.href = "./signin.html";
+                });
+            }
+        });
+    });
+</script>
 </body>
 </html>

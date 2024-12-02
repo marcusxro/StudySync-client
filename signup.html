@@ -24,127 +24,147 @@
 </head>
 
 <body>
-    <form class="signup-form">
-        <div class="flex flex-col items-center justify-center h-screen">
-            <div class="w-96">
 
-                <div class="mb-[1.3rem] flex gap-2 flex-col">
-                    <div class="font-bold  text-[2rem] leading-[30px]">
-                        Create an account
-                    </div>
+    <div class="flex flex-row h-[100vh]">
 
-                    <div class="flex gap-1">
-                        <div>
-                            Already have an account?
+        <div class="w-full h-full p-3 flex items-center justify-center">
+            <form class="signup-form">
+
+                <div class="w-96">
+
+                    <div class="mb-[1.3rem] flex gap-2 flex-col">
+                        <div class="font-bold  text-[2rem] leading-[30px]">
+                            Create an account
                         </div>
-                        <a 
-                        class="text-[#3490dc] underline"
-                        href="signin.html">
-                            Sign in
-                        </a>
+
+                        <div class="flex gap-1">
+                            <div>
+                                Already have an account?
+                            </div>
+                            <a class="text-[#3490dc] underline" href="signin.html">
+                                Sign in
+                            </a>
+                        </div>
+
                     </div>
 
-                </div>
 
+                    <div class="flex gap-3">
+                        <div class="mb-4">
+                            <input placeholder="Email"
+                                class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
+                                type="email" id="email" name="email"
+                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
 
-                <div class="flex gap-3">
+                        <div class="mb-4">
+                            <input placeholder="Username"
+                                class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
+                                type="text" id="username" name="email"
+                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                    </div>
+
                     <div class="mb-4">
-                        <input
-                        placeholder="Email"
-                         class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
-                            type="email" id="email" name="email"
+
+                        <input placeholder="Password"
+                            class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
+                            type="password" id="password" name="password"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
-    
                     <div class="mb-4">
-                        <input 
-                        placeholder="Username"
-                        class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
-                            type="text" id="username" name="email"
+                        <input placeholder="Repeat Password"
+                            class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
+                            type="password" id="reppassword" name="password"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
-                </div>
 
-                <div class="mb-4">
-                   
-                    <input
-                    placeholder="Password"
-                     class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
-                        type="password" id="password" name="password"
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                </div>
-                <div class="mb-4">
-                    <input 
-                    placeholder="Repeat Password"
-                    class="bg-gray-100 border-[1px] border-[#535353] outline-none w-full p-2 rounded-md"
-                        type="password" id="reppassword" name="password"
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                </div>
+                    <div class="mb-4">
+                        <div class="errorModal bg-red-500 p-2 rounded-md text-white hidden mb-2">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+                                </path>
+                            </svg>
+                        </div>
 
-                <div class="mb-4">
-                    <div class="errorModal bg-red-500 p-2 rounded-md text-white hidden mb-2">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
-                            height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
-                            </path>
-                        </svg>
+                        <div class="successModal bg-green-500 p-2 rounded-md text-white  hidden mb-2">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
+                                height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <button id="submit" type="submit"
+                            class="login-button w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Create account
+                        </button>
                     </div>
 
-                    <div class="successModal bg-green-500 p-2 rounded-md text-white  hidden mb-2">
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
-                            height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z">
-                            </path>
-                        </svg>
-                    </div>
+                    <div class="flex items-center text-[#888] text-sm mb-3">
+                        <div class="w-full h-[1px] bg-[#999]">
 
-                    <button id="submit" type="submit"
-                        class="login-button w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Create account
-                    </button>
-                </div>
-                
-                <div class="flex items-center text-[#888] text-sm mb-3">
-                    <div class="w-full h-[1px] bg-[#999]">
+                        </div>
+                        <div class="w-full  text-center">
+                            Or register with
+                        </div>
+                        <div class="w-full h-[1px] bg-[#999]">
 
-                    </div>
-                    <div class="w-full  text-center">
-                        Or register with
-                    </div>
-                    <div class="w-full h-[1px] bg-[#999]">
-
-                    </div>
-                </div>
-
-
-                <div class="flex gap-2 w-full">
-
-                    <div class="googleAuth w-full flex hover:bg-[#D4D5D7] hover:text-[#fff] cursor-pointer items-center gap-3 justify-center text-center bg-[#ECECEC] border-[1px] border-[#D4D5D7] rounded-md p-2">
-                        <div>
-                        <svg stroke="currentColor" fill="#eb6134" stroke-width="0" viewBox="0 0 488 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
-                      </div>
-                      
-                        <div class="text-[#888]">
-                            Google
                         </div>
                     </div>
 
-                    <div class="facebookAuth w-full flex hover:bg-[#D4D5D7] hover:text-[#fff] cursor-pointer items-center gap-3 justify-center text-center bg-[#ECECEC] border-[1px] border-[#D4D5D7] rounded-md p-2">
-                        <div>
-                            <svg stroke="currentColor" fill="#5890FF" stroke-width="0" viewBox="0 0 512 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
+
+                    <div class="flex gap-2 w-full">
+
+                        <div
+                            class="googleAuth w-full flex hover:bg-[#D4D5D7] hover:text-[#fff] cursor-pointer items-center gap-3 justify-center text-center bg-[#ECECEC] border-[1px] border-[#D4D5D7] rounded-md p-2">
+                            <div>
+                                <svg stroke="currentColor" fill="#eb6134" stroke-width="0" viewBox="0 0 488 512"
+                                    height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                                    </path>
+                                </svg>
+                            </div>
+
+                            <div class="text-[#888]">
+                                Google
+                            </div>
                         </div>
-                        <div class="text-[#888]">
-                            Facebook
+
+                        <div
+                            class="facebookAuth w-full flex hover:bg-[#D4D5D7] hover:text-[#fff] cursor-pointer items-center gap-3 justify-center text-center bg-[#ECECEC] border-[1px] border-[#D4D5D7] rounded-md p-2">
+                            <div>
+                                <svg stroke="currentColor" fill="#5890FF" stroke-width="0" viewBox="0 0 512 512"
+                                    height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="text-[#888]">
+                                Facebook
+                            </div>
                         </div>
                     </div>
+
                 </div>
+            </form>
+        </div>
+
+        <div class="h-full w-full bg-[#5986A6] hidden md:flex items-center justify-center">
+            <div class="h-full w-full max-w-[600px] max-h-[350px]">
+                <img 
+                class="w-full h-full object-cover"
+                src="./assets/images/Street Life - Class Picture 1.png"></img>
             </div>
         </div>
-    </form>
 
+    </div>
 
 
 

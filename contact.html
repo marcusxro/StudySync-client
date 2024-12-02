@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io@4.0.1/dist/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3490dc',
+                        'secondary': '#ffed4a',
+                        'danger': '#e3342f',
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            font-size: 16px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .actions a {
+            padding: 10px 15px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #007bff;
+        }
+
+        .actions .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .actions .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #565252;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+
+        footer .social-icons {
+            margin-bottom: 20px;
+        }
+
+        footer .social-icons img {
+            margin: 0 10px;
+            width: 24px;
+        }
+
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        footer .links div {
+            text-align: left;
+        }
+
+        footer .links a {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        footer .links a:hover {
+            color: #007bff;
+        }
+
+
+        .bordered {
+            box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+            color: #333;
+            border-top: 1px solid #ddd;
+
+
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Left Section: Logo and Icons */
+        .footer-left {
+            text-align: left;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            width: 50px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .learn-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+
+        .footer-right {
+            display: flex;
+            gap: 40px;
+            text-align: left;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: #007bff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            margin-top: 20px;
+        }
+
+        .bordered {
+            box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            cursor: pointer;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 20px;
+            color: #fff;
+
+        }
+
+        .faq-question {
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 0.5rem;
+            color: #999;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header-home></header-home>
+
+
+    <main class="h-auto w-full max-w-[1100px] px-4 mx-auto my-[5rem]">
+
+        <div class="text-[3rem] font-semibold text-[#565252] leading-[99%]">
+            Need assistance? </br>
+            we love to hear from you 👋
+        </div>
+        <p class="mt-5 text-[#888]">
+            We're here to guide and support you throughout your journey.
+        </p>
+
+
+
+        <form class="contact-form mt-[5rem] flex flex-col gap-5 items-start" action="submit">
+
+            <div class="w-full flex gap-5">
+                <input id="name" required
+                    class="Firstname w-full p-5 rounded-md outline-none border-[1px] border-[#ccc]" type="text"
+                    placeholder="Firstname">
+                <input id="lastname" required
+                    class="Lastname w-full p-5 rounded-md outline-none border-[1px] border-[#ccc]" type="text"
+                    placeholder="Lastname">
+            </div>
+
+
+            <div class="w-full flex gap-5">
+                <input id="email" class="Email w-full p-5 rounded-md outline-none border-[1px] border-[#ccc]"
+                    type="email" placeholder="Email">
+                <select id="interests" required
+                    class="Interests w-full p-5 rounded-md outline-none border-[1px] border-[#ccc] text-[#ccc]" name=""
+                    id="">
+                    <option class="text-black" value="">What you are interested</option>
+                    <option class="text-black" value="I want to learn">I want to learn</option>
+                    <option class="text-black" value="I want to teach">I want to teach</option>
+                    <option class="text-black" value="I want to partner">I want to partner</option>
+                    <option class="text-black" value="I want to work">I want to work</option>
+                </select>
+            </div>
+
+            <textarea id="message" required placeholder="Message"
+                class="Message w-full p-5 rounded-md outline-none border-[1px] border-[#ccc] resize-none h-full min-h-[300px]">
+            </textarea>
+
+            <button
+                class="contact-button bg-[#565252] text-[#ccc] px-5 py-3 rounded-xl hover:bg-[#888] flex gap-2 items-center hover:text-[#fff]">
+                Send Message
+
+
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="20px"
+                    width="20px" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z">
+                    </path>
+                </svg>
+            </button>
+
+        </form>
+
+      
+        <div class="mt-[5rem]">
+            <div class="mb-5">
+                <div class="text-[3rem] font-semibold text-[#565252] leading-[99%] ">
+                    FAQS
+                </div>
+                <p class="text-[#888]">
+                    Below are some possible questions:
+                </p>
+            </div>
+            <div id="faq-container"></div>
+        </div>
+
+        <div class="mt-[5rem] text-center text-[#888]">
+            Your information will not be shared or sold.
+        </div>
+    </main>
+
+
+    <footer-home></footer-home>
+
+
+    <script src="./account/components.js"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="contact.js" type="module"></script>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCTXicg-uyzAQyd62hwMfh0RHtRgd-bCBQ",
+            authDomain: "studysync-a430c.firebaseapp.com",
+            projectId: "studysync-a430c",
+            storageBucket: "studysync-a430c.firebasestorage.app",
+            messagingSenderId: "787702087721",
+            appId: "1:787702087721:web:f0b5704f7e4213b4f61c38"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navigator = document.querySelector('.navigator');
+
+            // Listen for authentication state changes
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // User is signed in
+                    navigator.innerHTML = "Dashboard";
+                    navigator.addEventListener("click", () => {
+                        window.location.href = "./account/dashboardUI.html";
+                        console.log("User is signed in");
+                    });
+                } else {
+                    // No user is signed in
+                    navigator.innerHTML = "Sign In";
+                    navigator.addEventListener("click", () => {
+                        window.location.href = "./signin.html";
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

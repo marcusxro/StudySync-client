@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Page</title>
+    <link rel="stylesheet" href="Schedule.css">
+    <!-- Custom inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/socket.io@4.0.1/dist/socket.io.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3490dc',
+                        'secondary': '#ffed4a',
+                        'danger': '#e3342f',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#F8FAFB]">
+ <!-- tutorial modals -->
+
+ <div class="outerDiv hidden">
+ <user-modal></user-modal>
+ <interest-modal></interest-modal>
+
+    <div class="container h-screen p-5 w-full">
+        <!-- Sidebar Section -->
+        <system-sidebar></system-sidebar>
+
+        <!--  Calendar Section -->
+        <main class="w-full max-w-[100%]">
+            <header>
+                <div class="menu-toggle" id="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <h2>My Schedules</h2>
+            </header>
+
+            <div class="calendar  w-full">
+                <div class="calendar-header w-full">
+
+                    <h2 id="current-month"></h2>
+
+                    <div class="view-options">
+                        <!--  drop down button para sa months  -->
+                        <button id="month-button">Month</button>
+                        <ul id="month-dropdown" class="hidden">
+                            <li data-month="0">January</li>
+                            <li data-month="1">February</li>
+                            <li data-month="2">March</li>
+                            <li data-month="3">April</li>
+                            <li data-month="4">May</li>
+                            <li data-month="5">June</li>
+                            <li data-month="6">July</li>
+                            <li data-month="7">August</li>
+                            <li data-month="8">September</li>
+                            <li data-month="9">October</li>
+                            <li data-month="10">November</li>
+                            <li data-month="11">December</li>
+                        </ul>
+                    </div>
+                    <div class="next-prev-button">
+                        <!--  left button -->
+                        <button id="prev-month">&lt;</button>
+                        <!--  right button -->
+                        <button id="next-month">&gt;</button>
+                    </div>
+                </div>
+                <div class="days-of-week">
+                    <span>Sun</span>
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                </div>
+                <div class="calendar-body" id="calendar-body"></div>
+            </div>
+        </main>
+    </div>
+</div>
+
+    <script src="Schedule.js" type="module"></script>
+    <script src="components.js"></script>
+    <script src="middleware.js" type="module"></script>
+
+  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.11.1/simplepeer.min.js"></script>
+
+
+</body>
+
+</html>

@@ -11,11 +11,14 @@ class Icon extends HTMLElement {
 }
 
 
+
+
 class userModal extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
          <div
-            class="userModal hidden flex fixed top-0 left-0 h-[100vh] bg-red-500 w-screen flex items-center justify-center p-3">
+style="background: rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.18);"
+            class="userModal hidden flex fixed top-0 left-0 h-[100vh] w-screen flex items-center justify-center p-3 z-[50000]">
 
             <div class="bg-[#ECECEC] border-[1px] border-[#D4D5D7]  relative rounded-md w-full max-w-[500px]">
 
@@ -91,6 +94,8 @@ class interestModal extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
         <div
+        style="background: rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.18);"
+
             class="userInterest hidden  flex fixed top-0 left-0 h-[100vh] bg-red-500 w-screen flex items-center justify-center p-3">
 
             <div class="bg-[#ECECEC] border-[1px] border-[#D4D5D7]  relative rounded-md w-full max-w-[500px]">
@@ -149,7 +154,10 @@ class systemSidebar extends HTMLElement {
       <div class="flex flex-col gap-5 mt-5  p-2 h-full justify-between dashboardPageClick">
         <div class="flex flex-col gap-5 ">
 
-          <div class="flex gap-2 items-center cursor-pointer">
+
+         <a href="dashboardUI.html">
+
+ <div class="flex gap-2 items-center cursor-pointer">
             <div>
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px"
                 width="20px" xmlns="http://www.w3.org/2000/svg">
@@ -159,9 +167,11 @@ class systemSidebar extends HTMLElement {
             </div>
             Dashboard
           </div>
-
+    
+ </a>
+         
+ <a href="find.html">
           <div class="flex gap-2 items-center cursor-pointer findPageClick">
-
             <div>
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px"
                 width="20px" xmlns="http://www.w3.org/2000/svg">
@@ -176,9 +186,11 @@ class systemSidebar extends HTMLElement {
             </div>
             Find
           </div>
+ </a>
 
+
+ <a href="Schedule.html">
           <div class="flex gap-2 items-center cursor-pointer">
-
             <div>
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="20px"
                 width="20px" xmlns="http://www.w3.org/2000/svg">
@@ -189,12 +201,13 @@ class systemSidebar extends HTMLElement {
             </div>
             Schedule
           </div>
+ </a>
+
         </div>
 
 
-
+<a href="settings.html">
         <div class="flex gap-2 items-center cursor-pointer">
-
           <div>
             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="20px"
               width="20px" xmlns="http://www.w3.org/2000/svg">
@@ -205,6 +218,7 @@ class systemSidebar extends HTMLElement {
           </div>
           Settings
         </div>
+</a>
       </div>
 
     </div>`
@@ -238,12 +252,12 @@ class headerHome extends HTMLElement {
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="About.html">About</a></li>
-          <li><a href="#Contact">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
 
       <div class="flex gap-2 items-center">
-        <div class="navigator bg-[#565252] p-2 rounded-[1.3rem] text-white px-5 hover:bg-[#888]">Sign in</div>
+        <div class="navigator bg-[#565252] cursor-pointer p-2 rounded-[1.3rem] text-white px-5 hover:bg-[#888]">Sign in</div>
       </div>
 
     </div>
@@ -327,3 +341,5 @@ customElements.define('system-sidebar', systemSidebar)
 customElements.define('footer-home', footerHome)
 
 customElements.define('header-home', headerHome)
+
+

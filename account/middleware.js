@@ -470,6 +470,7 @@ onAuthStateChanged(auth, (currentUser) => {
                 .then((response) => {
                     saveInterest.innerHTML = 'Save';
                     Loading = false;
+                    window.location.reload();
                 })
                 .catch((error) => {
                     console.error('Error saving interests:', error.response.data.message);

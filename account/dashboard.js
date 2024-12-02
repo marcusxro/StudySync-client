@@ -66,3 +66,4 @@ const dashboardPageClick = document.querySelector('.dashboardPageClick')
 dashboardPageClick.addEventListener('click', () => {
     window.location.href = 'dashboardUI.html'
 })
+

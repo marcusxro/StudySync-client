@@ -34,107 +34,108 @@
 
 <body class="bg-[#F8FAFB]">
 
-
-  <!-- tutorial modals -->
-  <user-modal></user-modal>
-  <interest-modal></interest-modal>
-
-  <div class="p-5 flex h-screen gap-5">
-
-    <system-sidebar>
-      
-    </system-sidebar>
+  <div class="outerDiv hidden">
+    <!-- tutorial modals -->
+    <user-modal></user-modal>
+    <interest-modal></interest-modal>
 
 
+    <div class="p-5 flex h-screen gap-5">
 
-    <div class="w-full flex flex-col items-start">
-      <div class="text-[1.5rem] font-bold text-[#565454] greet-text">
-        Welcome back,
-      </div>
-      <div class="text-sm text-[#A7A6A6] pb-1">
-        Are you in a mood to study? kindly interact with the dashboard
-      </div>
+      <system-sidebar>
 
-      <div class="flex gap-5 h-full min-h-[300px] w-full max-h-[300px] mt-5 border-t-[1px] border-t-[#ECECEC] pt-5 ">
+      </system-sidebar>
 
 
-        <div
-          class="h-full p-5 justify-between flex flex-col gap-5 w-full bg-[#3490dc] rounded-xl border-[1px] border-[#535353]">
-          <div>
-            <div class="text-white text-[1.3rem] font-bold">
-              Find study partners
-            </div>
 
-            <div class="text-sm text-[#B8B7B7]">
-              Find your perfect buddy based on your
-              interests!
-            </div>
+      <div class="w-full flex flex-col items-start">
+        <div class="text-[1.5rem] font-bold text-[#565454] greet-text">
+          Welcome back,
+        </div>
+        <div class="text-sm text-[#A7A6A6] pb-1">
+          Are you in a mood to study? kindly interact with the dashboard
+        </div>
 
-          </div>
+        <div class="flex gap-5 h-full min-h-[300px] w-full max-h-[300px] mt-5 border-t-[1px] border-t-[#ECECEC] pt-5 ">
 
 
-          <div class="flex justify-end items-center">
-
-            <a class="text-white flex items-center gap-2" href="find.html">
-              Find now
-
-              <div>
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="20px"
-                  width="20px" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M210.7 147.6c7.5-7.5 19.8-7.5 27.3 0l95.4 95.7c7.3 7.3 7.5 19.1.6 26.6l-94 94.3c-3.8 3.8-8.7 5.7-13.7 5.7-4.9 0-9.9-1.9-13.6-5.6-7.5-7.5-7.6-19.7 0-27.3l79.9-81.1-81.9-81.1c-7.6-7.4-7.6-19.6 0-27.2z">
-                  </path>
-                  <path
-                    d="M48 256c0 114.9 93.1 208 208 208s208-93.1 208-208S370.9 48 256 48 48 141.1 48 256zm32 0c0-47 18.3-91.2 51.6-124.4C164.8 98.3 209 80 256 80s91.2 18.3 124.4 51.6C413.7 164.8 432 209 432 256s-18.3 91.2-51.6 124.4C347.2 413.7 303 432 256 432s-91.2-18.3-124.4-51.6C98.3 347.2 80 303 80 256z">
-                  </path>
-                </svg>
+          <div
+            class="h-full p-5 justify-between flex flex-col gap-5 w-full bg-[#3490dc] rounded-xl border-[1px] border-[#535353]">
+            <div>
+              <div class="text-white text-[1.3rem] font-bold">
+                Find study partners
               </div>
 
-            </a>
+              <div class="text-sm text-[#B8B7B7]">
+                Find your perfect buddy based on your
+                interests!
+              </div>
+
+            </div>
+
+
+            <div class="flex justify-end items-center">
+
+              <a class="text-white flex items-center gap-2" href="find.html">
+                Find now
+
+                <div>
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="20px"
+                    width="20px" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M210.7 147.6c7.5-7.5 19.8-7.5 27.3 0l95.4 95.7c7.3 7.3 7.5 19.1.6 26.6l-94 94.3c-3.8 3.8-8.7 5.7-13.7 5.7-4.9 0-9.9-1.9-13.6-5.6-7.5-7.5-7.6-19.7 0-27.3l79.9-81.1-81.9-81.1c-7.6-7.4-7.6-19.6 0-27.2z">
+                    </path>
+                    <path
+                      d="M48 256c0 114.9 93.1 208 208 208s208-93.1 208-208S370.9 48 256 48 48 141.1 48 256zm32 0c0-47 18.3-91.2 51.6-124.4C164.8 98.3 209 80 256 80s91.2 18.3 124.4 51.6C413.7 164.8 432 209 432 256s-18.3 91.2-51.6 124.4C347.2 413.7 303 432 256 432s-91.2-18.3-124.4-51.6C98.3 347.2 80 303 80 256z">
+                    </path>
+                  </svg>
+                </div>
+
+              </a>
+            </div>
           </div>
+
+          <div class="h-full w-full p-5 rounded-xl border-[1px] bg-[#fff] bordered">
+            <div class="text-[#565454] text-[1.3rem] font-bold">
+              Analytics
+            </div>
+          </div>
+
         </div>
 
-        <div class="h-full w-full p-5 rounded-xl border-[1px] bg-[#fff] bordered">
+        <div class="w-full h-full flex flex-col items-start mt-5">
+
           <div class="text-[#565454] text-[1.3rem] font-bold">
-            Analytics
+            Scheduled meetings
+          </div>
+
+          <p class="text-[#B8B7B7] text-sm">
+            Plan and execute your meetings.
+          </p>
+
+          <div class="w-full h-full bg-[#fff] bordered mt-5 rounded-lg">
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="w-full h-full max-w-[400px] bg-[#fff] border-[1px] border-[#B8B7B7] rounded-xl bordered">
+        <div class="p-5 border-b-[1px] border-b-[#B8B7B7]">
+
+          <div class="text-[#565454] text-[1.3rem] font-bold">
+            Activity
+          </div>
+          <div class="text-[#B8B7B7] text-sm">
+            Visualize your overall activity here
           </div>
         </div>
-
       </div>
 
-      <div class="w-full h-full flex flex-col items-start mt-5">
 
-        <div class="text-[#565454] text-[1.3rem] font-bold">
-          Scheduled meetings
-        </div>
-
-        <p class="text-[#B8B7B7] text-sm">
-          Plan and execute your meetings.
-        </p>
-
-        <div class="w-full h-full bg-[#fff] bordered mt-5 rounded-lg">
-        </div>
-
-      </div>
     </div>
-
-
-    <div class="w-full h-full max-w-[400px] bg-[#fff] border-[1px] border-[#B8B7B7] rounded-xl bordered">
-      <div class="p-5 border-b-[1px] border-b-[#B8B7B7]">
-
-        <div class="text-[#565454] text-[1.3rem] font-bold">
-          Activity
-        </div>
-        <div class="text-[#B8B7B7] text-sm">
-          Visualize your overall activity here
-        </div>
-      </div>
-    </div>
-
 
   </div>
-
-
 
   <script src="dashboard.js" type="module"></script>
   <script src="middleware.js" type="module"></script>

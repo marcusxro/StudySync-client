@@ -158,7 +158,7 @@ googleButton.addEventListener('click', () => {
       const token = credential.accessToken;
       const user = result.user;
       console.log('User signed in:', user);
-      window.location.href = 'account/dashboard.html';
+      window.location.href = 'account/dashboardUI.html';
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -177,7 +177,7 @@ facebookAuth?.addEventListener('click', () => {
       const token = credential.accessToken;
       const user = result.user;
       console.log('User signed in:', user);
-      window.location.href = 'account/dashboard.html';
+      window.location.href = 'account/dashboardUI.html';
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
