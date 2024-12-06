@@ -29,23 +29,143 @@
 
 </script>
 <style>
-    #root {
-        width: 100vw;
-        height: 100vh;
+    .sCsSbKP9yxvw4LQAeaTz {
+        background-color: #fff !important;
+        /* Light button background */
+
     }
+
+    #ZegoRoomFooter {
+        border-radius: 30px;
+    }
+
+    .zego-prebuilt-container {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        /* Set text color to black */
+    }
+
+    .ZegoRoomMobile_ZegoRoom {
+        background-color: #ffffff !important;
+    }
+
+    .zego-prebuilt-container button {
+        background-color: #f0f0f0 !important;
+        /* Light button background */
+        color: #000000 !important;
+        /* Dark button text */
+        border: 1px solid #ccc;
+        /* Add subtle borders */
+    }
+
+
+    .t7CkP1l2e1KLqty5_18v {
+        border-radius: 30px !important;
+    }
+
+    .j9ygOVxEl2nClTPs77Ta,
+    .tkC3S6XQehKbTEIfFYVM {
+        border-radius: 30px !important;
+    }
+
+    .chat-gpt-quick-query-container {
+        display: none !important;
+    }
+
+    /* .jF_DhwXwBFswm5nphXHX {
+        background-color: #d0a5a5 !important;
+    } */
+
+     .active {
+        background-color: #565252;
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+
+     }
+     .notActive {
+      margin-left: 5px;
+     }
+     .bordered{
+    box-shadow: 0px 0px 29px -23px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 29px -23px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 29px -23px rgba(0,0,0,0.75);
+  }
 </style>
 </head>
 
 
 <body>
-    <div id="root">
+    <div class="outerDiv hidden h-auto sm:h-[100vh] overflow-hidden">
+
+        <!-- tutorial modals -->
+        <user-modal></user-modal>
+        <interest-modal></interest-modal>
 
 
-        <div>
-            asdsd
+        <!-- Custom Modal for User Profile -->
+        <div id="userModals"
+            style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+  padding: 20px; background: white; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
+            <h3 id="modalTitle">User Profile</h3>
+            <p id="modalContent">Details about the user will appear here.</p>
+            <button onclick="closeModal()"
+                style="margin-top: 10px; padding: 5px 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
         </div>
+
+        <div class="flex  lg:p-5 h-screen gap-5 w-full justify-center">
+            <div class="hidden lg:flex">
+
+                <system-sidebar>
+                </system-sidebar>
+
+            </div>
+            <div class="flex items-center justify-center flex-col w-full">
+
+                <div
+                    class="flex container-show items-center justify-center p-3">
+                    <div
+                        class="flex  gap-2 text-center flex-col h-full items-center justify-center bg-[#fff] border-[1px] border-[#B8B7B7] rounded-xl bordered p-5 bordered">
+
+                        <div class="flex  gap-2 flex-col md:flex-row items-start w-full">
+
+                            <select
+                                class="hobbyList bg-[#f0f0f0] p-2 w-full rounded-md border-[1px] border-[#B8B7B7]"></select>
+                            <button class="searchButton p-2 rounded-md bg-[#3490dc] text-white w-full">Start
+                                searching</button>
+
+                        </div>
+
+                        <div class="text-center w-full">
+                            Find your perfect buddy based on your interests!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden w-full gap-5 p-3 callHeader">
+                    <div class="dashB bg-[#2c2f3e] p-2 rounded-md text-white border-[1px] border-[#B8B7B7]">
+                        Dashboard
+                    </div>
+                    <div class="otherBtn dashB bg-[#2c2f3e] hidden p-2 rounded-md text-white border-[1px] border-[#B8B7B7]">
+
+                        Other
+                    </div>
+                </div>
+
+                <div class="w-full h-[0%] flex items-center justify-center" id="root">
+
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </body>
+
+
+<script src="components.js"></script>
+<script src="middleware.js" type="module"></script>
+
 
 <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.11.1/simplepeer.min.js"></script>
@@ -56,6 +176,32 @@
 <script src="https://unpkg.com/zego-superboard-web@2.15.3/index.js"></script>
 
 <script type="module" src="FindUser.js">
+    
+
+</script>
+
+<script>
+
+    const pageLink = window.location.href;
+
+    const buttons = document.querySelectorAll('.dashboardPageItem');
+
+    console.log(buttons);
+
+    console.log(pageLink);
+
+    if(pageLink.includes('dashboardUI.html')) {
+        buttons[0].classList.add('active');
+    }
+    else if(pageLink.includes('findUser.html')) {
+        buttons[1].classList.add('active');
+        buttons[0].classList.add('notActive');
+        buttons[2].classList.add('notActive');
+    }
+    
+    else if(pageLink.includes('Conference')) {
+        buttons[2].classList.add('active');
+    }
 
 </script>
 

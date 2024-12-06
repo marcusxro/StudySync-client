@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io@4.0.1/dist/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3490dc',
+                        'secondary': '#ffed4a',
+                        'danger': '#e3342f',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<style>
+    .sCsSbKP9yxvw4LQAeaTz {
+        background-color: #fff !important;
+        /* Light button background */
+
+    }
+
+    #ZegoRoomFooter {
+        border-radius: 30px;
+    }
+
+    .zego-prebuilt-container {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        /* Set text color to black */
+    }
+
+    .zego-prebuilt-container button {
+        background-color: #f0f0f0 !important;
+        /* Light button background */
+        color: #000000 !important;
+        /* Dark button text */
+        border: 1px solid #ccc;
+        /* Add subtle borders */
+    }
+
+
+
+    .j9ygOVxEl2nClTPs77Ta,
+    .tkC3S6XQehKbTEIfFYVM {
+        border-radius: 30px !important;
+    }
+
+    .chat-gpt-quick-query-container {
+        display: none !important;
+    }
+
+    .jF_DhwXwBFswm5nphXHX {
+        background-color: #d0a5a5 !important;
+    }
+</style>
+
+<body>
+    <div class="w-full h-full flex items-center justify-center" id="root">
+
+    </div>
+
+    
+
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.11.1/simplepeer.min.js"></script>
+
+    <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
+
+
+    <script src="https://unpkg.com/zego-superboard-web@2.15.3/index.js"></script>
+
+    <script type="module" src="FindUser.js">
+    </script>
+</body>
+
+</html>

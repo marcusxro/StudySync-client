@@ -30,6 +30,20 @@
     }
 
   </script>
+
+  <style>
+    
+    .active {
+        background-color: #565252;
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+
+     }
+     .notActive {
+      margin-left: 5px;
+     }
+  </style>
 </head>
 
 <body class="bg-[#F8FAFB]">
@@ -144,6 +158,33 @@
 
   <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.11.1/simplepeer.min.js"></script>
+
+  <script>
+
+    const pageLink = window.location.href;
+
+    const buttons = document.querySelectorAll('.dashboardPageItem');
+
+    console.log(buttons);
+
+    console.log(pageLink);
+
+    if(pageLink.includes('dashboardUI.html')) {
+        buttons[0].classList.add('active');
+
+        buttons[1].classList.add('notActive');
+        buttons[2].classList.add('notActive');
+        
+    }
+    else if(pageLink.includes('findUser.html')) {
+        buttons[1].classList.add('active');
+    }
+    
+    else if(pageLink.includes('Conference')) {
+        buttons[2].classList.add('active');
+    }
+
+</script>
 
 
 </body>

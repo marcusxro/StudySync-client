@@ -136,9 +136,9 @@ class systemSidebar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
         
-    <div class="w-full h-full max-w-[300px] min-w-[300px] flex flex-col">
+    <div class="w-full h-full max-w-[300px] min-w-[300px] hidden lg:flex flex-col  bg-[#ececec] border-[1px] border-[#B8B7B7] rounded-xl py-3">
 
-      <div class="flex items-start gap-2 p-2 border-b-[1px] border-b-[#ECECEC] pb-5">
+      <div class="flex items-start gap-2 p-2 border-b-[1px] border-b-[#B8B7B7] pb-5 px-3">
 
         <div class="profilePicture w-[50px] h-[50px] bg-blue-500 rounded-full overflow-hidden">
 <img class="profile-picture w-full h-full object-cover"></img>
@@ -151,13 +151,15 @@ class systemSidebar extends HTMLElement {
       </div>
 
 
-      <div class="flex flex-col gap-5 mt-5  p-2 h-full justify-between dashboardPageClick">
+      <div class="flex flex-col gap-5 mt-5  p-2 h-full justify-between dashboardPageClick px-[1rem]">
         <div class="flex flex-col gap-5 ">
 
 
-         <a href="dashboardUI.html">
+         <a 
+         class="dashboardPageItem"
+         href="dashboardUI.html">
 
- <div class="flex gap-2 items-center cursor-pointer">
+           <div class="flex gap-2 items-center cursor-pointer">
             <div>
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px"
                 width="20px" xmlns="http://www.w3.org/2000/svg">
@@ -168,9 +170,11 @@ class systemSidebar extends HTMLElement {
             Dashboard
           </div>
     
- </a>
+       </a>
          
- <a href="find.html">
+ <a 
+  class="dashboardPageItem"
+ href="findUser.html">
           <div class="flex gap-2 items-center cursor-pointer findPageClick">
             <div>
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="20px"
@@ -189,7 +193,9 @@ class systemSidebar extends HTMLElement {
  </a>
 
 
- <a href="Schedule.html">
+ <a
+  class="dashboardPageItem"
+  href="Schedule.html">
           <div class="flex gap-2 items-center cursor-pointer">
             <div>
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="20px"
@@ -206,7 +212,9 @@ class systemSidebar extends HTMLElement {
         </div>
 
 
-<a href="settings.html">
+<a
+ class="dashboardPageItem"
+ href="settings.html">
         <div class="flex gap-2 items-center cursor-pointer">
           <div>
             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="20px"

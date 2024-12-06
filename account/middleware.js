@@ -45,9 +45,6 @@ let Loading = false;
 
 
 //socket io configs
-
-
-
 let userDetails;
 
 const editModal = (message) => {
