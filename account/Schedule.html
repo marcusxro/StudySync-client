@@ -14,9 +14,9 @@
         rel="stylesheet">
 
 
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://cdn.jsdelivr.net/npm/socket.io@4.0.1/dist/socket.io.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io@4.0.1/dist/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -30,82 +30,129 @@
             }
         }
     </script>
+
+    <style>
+        .active {
+            background-color: #565252;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+
+        }
+
+        .notActive {
+            margin-left: 5px;
+        }
+
+ 
+
+    </style>
 </head>
 
 <body class="bg-[#F8FAFB]">
- <!-- tutorial modals -->
+    <!-- tutorial modals -->
 
- <div class="outerDiv hidden">
- <user-modal></user-modal>
- <interest-modal></interest-modal>
+    <div class="outerDiv hidden w-full flex flex-row  h-[100vh] p-5">
+        <user-modal></user-modal>
+        <interest-modal></interest-modal>
 
-    <div class="container h-screen p-5 w-full">
         <!-- Sidebar Section -->
-        <system-sidebar></system-sidebar>
+        <div class="flex h-full">
+            <system-sidebar></system-sidebar>
 
         <!--  Calendar Section -->
-        <main class="w-full max-w-[100%]">
-            <header>
-                <div class="menu-toggle" id="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <h2>My Schedules</h2>
-            </header>
 
-            <div class="calendar  w-full">
-                <div class="calendar-header w-full">
 
-                    <h2 id="current-month"></h2>
+        <div class="calendar w-full flex flex-col items-start">
 
-                    <div class="view-options">
-                        <!--  drop down button para sa months  -->
-                        <button id="month-button">Month</button>
-                        <ul id="month-dropdown" class="hidden">
-                            <li data-month="0">January</li>
-                            <li data-month="1">February</li>
-                            <li data-month="2">March</li>
-                            <li data-month="3">April</li>
-                            <li data-month="4">May</li>
-                            <li data-month="5">June</li>
-                            <li data-month="6">July</li>
-                            <li data-month="7">August</li>
-                            <li data-month="8">September</li>
-                            <li data-month="9">October</li>
-                            <li data-month="10">November</li>
-                            <li data-month="11">December</li>
-                        </ul>
-                    </div>
-                    <div class="next-prev-button">
-                        <!--  left button -->
-                        <button id="prev-month">&lt;</button>
-                        <!--  right button -->
-                        <button id="next-month">&gt;</button>
-                    </div>
-                </div>
-                <div class="days-of-week">
-                    <span>Sun</span>
-                    <span>Mon</span>
-                    <span>Tue</span>
-                    <span>Wed</span>
-                    <span>Thu</span>
-                    <span>Fri</span>
-                    <span>Sat</span>
-                </div>
-                <div class="calendar-body" id="calendar-body"></div>
+            <div class="friend-list flex gap-3 w-full overflow-auto items-center py-4">
+
             </div>
-        </main>
+
+            <div class="calendar-header w-full">
+
+                <h2
+                 id="current-month">
+                    <!--  month and year  -->
+                </h2>
+
+                <div class="view-options">
+                    <!--  drop down button para sa months  -->
+                    <button id="month-button">Month</button>
+                    <ul id="month-dropdown" class="hidden">
+                        <li data-month="0">January</li>
+                        <li data-month="1">February</li>
+                        <li data-month="2">March</li>
+                        <li data-month="3">April</li>
+                        <li data-month="4">May</li>
+                        <li data-month="5">June</li>
+                        <li data-month="6">July</li>
+                        <li data-month="7">August</li>
+                        <li data-month="8">September</li>
+                        <li data-month="9">October</li>
+                        <li data-month="10">November</li>
+                        <li data-month="11">December</li>
+                    </ul>
+                </div>
+                <div class="next-prev-button">
+                    <!--  left button -->
+                    <button id="prev-month">&lt;</button>
+                    <!--  right button -->
+                    <button id="next-month">&gt;</button>
+                </div>
+            </div>
+
+            <div class="days-of-week w-full">
+                <span>Sun</span>
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+            </div>
+            <div class="calendar-body h-full w-full bg-red-500 p-2 rounded-md" id="calendar-body">
+
+            </div>
+
+        </div>
+        </div>
+
     </div>
-</div>
 
     <script src="Schedule.js" type="module"></script>
     <script src="components.js"></script>
     <script src="middleware.js" type="module"></script>
 
-  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.11.1/simplepeer.min.js"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.11.1/simplepeer.min.js"></script>
 
+
+    <script>
+        const pageLink = window.location.href;
+
+        const buttons = document.querySelectorAll('.dashboardPageItem');
+
+        console.log(buttons);
+
+        console.log(pageLink);
+
+        if (pageLink.includes('dashboardUI.html')) {
+            buttons[0].classList.add('active');
+
+
+        }
+        else if (pageLink.includes('findUser.html')) {
+            buttons[1].classList.add('active');
+        }
+
+        else if (pageLink.includes('Schedule')) {
+            buttons[2].classList.add('active');
+
+            buttons[1].classList.add('notActive');
+            buttons[0].classList.add('notActive');
+        }
+    </script>
 
 </body>
 

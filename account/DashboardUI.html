@@ -32,34 +32,39 @@
   </script>
 
   <style>
-    
     .active {
-        background-color: #565252;
-        padding: 10px;
-        border-radius: 10px;
-        color: white;
+      background-color: #565252;
+      padding: 10px;
+      border-radius: 10px;
+      color: white;
 
-     }
-     .notActive {
+    }
+
+    .notActive {
       margin-left: 5px;
-     }
+    }
   </style>
 </head>
 
 <body class="bg-[#F8FAFB]">
 
-  <div class="outerDiv hidden">
+  <div class="outerDiv hidden h-auto">
     <!-- tutorial modals -->
     <user-modal></user-modal>
     <interest-modal></interest-modal>
 
 
-    <div class="p-5 flex h-screen gap-5">
+    <div class="p-5 flex h-screen gap-5 flex-col lg:flex-row">
 
-      <system-sidebar>
+      <div class="hidden lg:block">
+        <system-sidebar>
 
-      </system-sidebar>
+        </system-sidebar>
+      </div>
 
+     <user-header>
+      
+     </user-header>
 
 
       <div class="w-full flex flex-col items-start">
@@ -70,8 +75,10 @@
           Are you in a mood to study? kindly interact with the dashboard
         </div>
 
-        <div class="flex gap-5 h-full min-h-[300px] w-full max-h-[300px] mt-5 border-t-[1px] border-t-[#ECECEC] pt-5 ">
 
+
+        <div
+          class="flex gap-5 h-full max-h-[700px] min-h-[700px] flex-col lg:flex-row lg:min-h-[300px] w-full lg:max-h-[300px]  mt-5 border-t-[1px] border-t-[#ECECEC] pt-5 ">
 
           <div
             class="h-full p-5 justify-between flex flex-col gap-5 w-full bg-[#3490dc] rounded-xl border-[1px] border-[#535353]">
@@ -90,7 +97,7 @@
 
             <div class="flex justify-end items-center">
 
-              <a class="text-white flex items-center gap-2" href="find.html">
+              <a class="text-white flex items-center gap-2" href="FindUser.html">
                 Find now
 
                 <div>
@@ -117,7 +124,7 @@
 
         </div>
 
-        <div class="w-full h-full flex flex-col items-start mt-5">
+        <div class="w-full min-h-[400px] h-full flex flex-col items-start mt-5">
 
           <div class="text-[#565454] text-[1.3rem] font-bold">
             Scheduled meetings
@@ -131,10 +138,12 @@
           </div>
 
         </div>
+
       </div>
 
 
-      <div class="w-full h-full max-w-[400px] bg-[#fff] border-[1px] border-[#B8B7B7] rounded-xl bordered">
+      <div
+        class="w-full min-h-[700px] overflow-y-auto h-full max-w-[100%] lg:max-w-[400px] bg-[#fff] border-[1px] border-[#B8B7B7] rounded-xl bordered">
         <div class="p-5 border-b-[1px] border-b-[#B8B7B7]">
 
           <div class="text-[#565454] text-[1.3rem] font-bold">
@@ -144,6 +153,11 @@
             Visualize your overall activity here
           </div>
         </div>
+
+        <div class="p-5 actCon flex flex-col gap-3">
+          sds
+        </div>
+
       </div>
 
 
@@ -169,22 +183,22 @@
 
     console.log(pageLink);
 
-    if(pageLink.includes('dashboardUI.html')) {
-        buttons[0].classList.add('active');
+    if (pageLink.includes('dashboardUI.html')) {
+      buttons[0].classList.add('active');
 
-        buttons[1].classList.add('notActive');
-        buttons[2].classList.add('notActive');
-        
+      buttons[1].classList.add('notActive');
+      buttons[2].classList.add('notActive');
+
     }
-    else if(pageLink.includes('findUser.html')) {
-        buttons[1].classList.add('active');
-    }
-    
-    else if(pageLink.includes('Conference')) {
-        buttons[2].classList.add('active');
+    else if (pageLink.includes('findUser.html')) {
+      buttons[1].classList.add('active');
     }
 
-</script>
+    else if (pageLink.includes('Conference')) {
+      buttons[2].classList.add('active');
+    }
+
+  </script>
 
 
 </body>

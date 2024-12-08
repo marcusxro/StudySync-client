@@ -30,43 +30,33 @@
 </script>
 <style>
     .sCsSbKP9yxvw4LQAeaTz {
-        background-color: #fff !important;
+        /* background-color: #fff !important; */
         /* Light button background */
+        border-radius: 20px !important;
 
     }
 
     #ZegoRoomFooter {
-        border-radius: 30px;
+        border-radius: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
-    .zego-prebuilt-container {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-        /* Set text color to black */
-    }
+  
 
     .ZegoRoomMobile_ZegoRoom {
         background-color: #ffffff !important;
     }
 
-    .zego-prebuilt-container button {
-        background-color: #f0f0f0 !important;
-        /* Light button background */
-        color: #000000 !important;
-        /* Dark button text */
-        border: 1px solid #ccc;
-        /* Add subtle borders */
-    }
-
-
+/* 
     .t7CkP1l2e1KLqty5_18v {
         border-radius: 30px !important;
-    }
+    } */
 
-    .j9ygOVxEl2nClTPs77Ta,
+    /* .j9ygOVxEl2nClTPs77Ta,
     .tkC3S6XQehKbTEIfFYVM {
         border-radius: 30px !important;
-    }
+    } */
 
     .chat-gpt-quick-query-container {
         display: none !important;
@@ -76,21 +66,23 @@
         background-color: #d0a5a5 !important;
     } */
 
-     .active {
+    .active {
         background-color: #565252;
         padding: 10px;
         border-radius: 10px;
         color: white;
 
-     }
-     .notActive {
-      margin-left: 5px;
-     }
-     .bordered{
-    box-shadow: 0px 0px 29px -23px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 0px 29px -23px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 29px -23px rgba(0,0,0,0.75);
-  }
+    }
+
+    .notActive {
+        margin-left: 5px;
+    }
+
+    .bordered {
+        box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+    }
 </style>
 </head>
 
@@ -101,7 +93,8 @@
         <!-- tutorial modals -->
         <user-modal></user-modal>
         <interest-modal></interest-modal>
-
+        
+        
 
         <!-- Custom Modal for User Profile -->
         <div id="userModals"
@@ -114,28 +107,30 @@
         </div>
 
         <div class="flex  lg:p-5 h-screen gap-5 w-full justify-center">
+
             <div class="hidden lg:flex">
 
                 <system-sidebar>
                 </system-sidebar>
 
+
             </div>
+
+
             <div class="flex items-center justify-center flex-col w-full">
 
-                <div
-                    class="flex container-show items-center justify-center p-3">
+                <div class="flex container-show items-center justify-center p-3">
                     <div
                         class="flex  gap-2 text-center flex-col h-full items-center justify-center bg-[#fff] border-[1px] border-[#B8B7B7] rounded-xl bordered p-5 bordered">
 
                         <div class="flex  gap-2 flex-col md:flex-row items-start w-full">
 
-                            <select
-                                class="hobbyList bg-[#f0f0f0] p-2 w-full rounded-md border-[1px] border-[#B8B7B7]">
-                            
-                            
+                            <select class="hobbyList bg-[#f0f0f0] p-2 w-full rounded-md border-[1px] border-[#B8B7B7]">
+
+
                             </select>
-                         
-                                <button class="searchButton p-2 rounded-md bg-[#3490dc] text-white w-full">Start
+
+                            <button class="searchButton p-2 rounded-md bg-[#3490dc] text-white w-full">Start
                                 searching</button>
 
                         </div>
@@ -150,9 +145,9 @@
                     <!-- <div class="dashB bg-[#2c2f3e] p-2 rounded-md text-white border-[1px] border-[#B8B7B7]">
                         Dashboard
                     </div> -->
-                    <div class="otherBtn dashB bg-[#2c2f3e] hidden p-2 rounded-md text-white border-[1px] border-[#B8B7B7]">
-
-                        Other
+                    <div
+                        class="otherBtn dashB bg-[#2c2f3e] hidden p-2 rounded-md text-white border-[1px] border-[#B8B7B7]">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z"></path></svg>
                     </div>
                 </div>
 
@@ -180,7 +175,7 @@
 <script src="https://unpkg.com/zego-superboard-web@2.15.3/index.js"></script>
 
 <script type="module" src="FindUser.js">
-    
+
 
 </script>
 
@@ -194,16 +189,16 @@
 
     console.log(pageLink);
 
-    if(pageLink.includes('dashboardUI.html')) {
+    if (pageLink.includes('dashboardUI.html')) {
         buttons[0].classList.add('active');
     }
-    else if(pageLink.includes('findUser.html')) {
+    else if (pageLink.includes('findUser.html')) {
         buttons[1].classList.add('active');
         buttons[0].classList.add('notActive');
         buttons[2].classList.add('notActive');
     }
-    
-    else if(pageLink.includes('Conference')) {
+
+    else if (pageLink.includes('Conference')) {
         buttons[2].classList.add('active');
     }
 

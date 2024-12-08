@@ -342,6 +342,69 @@ class footerHome extends HTMLElement {
     `
   }
 }
+
+
+
+class userHeader extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+    
+      <header class="flex lg:hidden w-full items-center justify-between gap-5  border-b-[1px] border-b-[#ECECEC] pb-5">
+        <div>
+          <div class="w-[50px] h-[50px] rounded-full">
+            <img class="imgHeader"></img>
+          </div>
+        </div>
+
+        <div class="openMenu">
+          <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" height="30px"
+            width="30px" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </div>
+
+
+        <div
+          class="fixed menu z-[5000] overflow-y-auto w-full h-full bg-[#ececec] top-[0%] left-[-100%] p-5 flex  items-center justify-center flex-col text-[3rem]">
+
+          <div class="flex items-center justify-between gap-5  border-b-[1px] border-b-[#ECECEC] pb-5 w-full">
+            <div>
+              <div class="w-[50px] h-[50px] bg-red-500 rounded-full overflow-hidden">
+       <img class="imgHeader"></img>
+              </div>
+            </div>
+
+            <div class="closeMenu">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="30px"
+                width="30px" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z">
+                </path>
+              </svg>
+            </div>
+          </div>
+
+
+          <div z-[999999999999999999999] class="h-full w-full p-5 flex lg:hidden  items-center justify-center flex-col text-[3rem]">
+
+            <a href="DashboardUI.html">
+              Dashboard
+            </a>
+            <a href="FindUser.html">
+              Find User
+            </a>
+            <a href="Schedule.html">
+              Schedule
+            </a>
+            <a href="settings.html">
+              Settings
+            </a>
+          </div>
+        </div>
+
+      </header>`
+  }
+}
 customElements.define('app-icon', Icon)
 customElements.define('user-modal', userModal)
 customElements.define('interest-modal', interestModal)
@@ -349,5 +412,7 @@ customElements.define('system-sidebar', systemSidebar)
 customElements.define('footer-home', footerHome)
 
 customElements.define('header-home', headerHome)
+
+customElements.define('user-header', userHeader)
 
 

@@ -12,7 +12,7 @@ let currentYear = currentDate.getFullYear();
 function updateCalendar(month, year) {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDay = new Date(year, month, 1).getDay();
-  
+
 
   calendarBody.innerHTML = ""; // Clear previous days
 
@@ -67,13 +67,13 @@ nextMonthButton.addEventListener("click", () => changeMonth(1));
 
 updateCalendar(currentMonth, currentYear);
 
-const menuToggle = document.getElementById("menu-toggle");
-const sidebar = document.getElementById("sidebar");
+// const menuToggle = document.getElementById("menu-toggle");
+// const sidebar = document.getElementById("sidebar");
 
-menuToggle.addEventListener("click", () => {
-  sidebar.classList.toggle("active");
-  menuToggle.classList.toggle("active");
-});
+// menuToggle.addEventListener("click", () => {
+//   sidebar.classList.toggle("active");
+//   menuToggle.classList.toggle("active");
+// });
 
 
 
@@ -82,25 +82,25 @@ const findPageClick = document.querySelector('.findPageClick')
 console.log(findPageClick)
 
 findPageClick.addEventListener('click', () => {
-    window.location.href = 'find.html'
+  window.location.href = 'find.html'
 })
 
 const dashboardPageClick = document.querySelector('.dashboardPageClick')
 
 dashboardPageClick.addEventListener('click', () => {
-    window.location.href = 'dashboardUI.html'
+  window.location.href = 'dashboardUI.html'
 })
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js'
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCTXicg-uyzAQyd62hwMfh0RHtRgd-bCBQ",
-    authDomain: "studysync-a430c.firebaseapp.com",
-    projectId: "studysync-a430c",
-    storageBucket: "studysync-a430c.firebasestorage.app",
-    messagingSenderId: "787702087721",
-    appId: "1:787702087721:web:f0b5704f7e4213b4f61c38"
+  apiKey: "AIzaSyCTXicg-uyzAQyd62hwMfh0RHtRgd-bCBQ",
+  authDomain: "studysync-a430c.firebaseapp.com",
+  projectId: "studysync-a430c",
+  storageBucket: "studysync-a430c.firebasestorage.app",
+  messagingSenderId: "787702087721",
+  appId: "1:787702087721:web:f0b5704f7e4213b4f61c38"
 };
 
 // Initialize Firebase
@@ -111,37 +111,54 @@ const auth = getAuth(app);
 
 
 onAuthStateChanged(auth, (user) => {
-    if (user) {
-        const sidebarUsername = document.querySelector('.sidebar-username')
-        const sidebarEmail = document.querySelector('.sidebar-email')
+  if (user) {
+    const sidebarUsername = document.querySelector('.sidebar-username')
+    const sidebarEmail = document.querySelector('.sidebar-email')
 
 
-        const greetText = document.querySelector('.greet-text')
 
-        axios.post('http://localhost:8080/getAccountByUid', { Uid: user.uid })
-            .then((res) => {
-                const { data } = res
-                sidebarUsername.innerHTML = data.Username
-                sidebarEmail.innerHTML = data.Email
-                greetText.innerHTML = `Welcome back,  ${data.Username} 🎉`
-            })
-            .catch((error) => {
-                console.error(error)
-            })
 
-            axios.get('http://localhost:8080/user/' + user.uid)
+    axios.post('http://localhost:8080/getAccountByUid', { Uid: user.uid })
+      .then((res) => {
+        const { data } = res
+        sidebarUsername.innerHTML = data.Username
+        sidebarEmail.innerHTML = data.Email
+
+        console.log(data.friends)
+
+        data?.friends?.forEach((friend) => {
+     
+    axios.post('http://localhost:8080/getAccountByUid', { Uid: friend })
             .then((res) => {
               const { data } = res;
               console.log(data);
-              const profilePicture = document.querySelector('.profile-picture');
-              profilePicture.src = data.imageUrl;
-            })
-            .catch((error) => {
-              console.error(error);
-            });
+              const friendList = document.querySelector('.friend-list');
 
-        console.log(user)
-    } else {
-        // No user is signed in.
-    }
+              friendList.innerHTML += `
+                      <div class="friend bg-[#565454] text-white rounded-md p-3">
+                        <p class="friend-username">${data.Username}</p>
+                      </div>
+                    `;
+            })
+        });
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+
+    axios.get('http://localhost:8080/user/' + user.uid)
+      .then((res) => {
+        const { data } = res;
+        console.log(data);
+        const profilePicture = document.querySelector('.profile-picture');
+        profilePicture.src = data.imageUrl;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    console.log(user)
+  } else {
+    // No user is signed in.
+  }
 });

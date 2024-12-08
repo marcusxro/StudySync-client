@@ -41,6 +41,22 @@ const addIcon = `<svg stroke="currentColor" fill="#888" stroke-width="0" viewBox
 const reportIcon = `<svg stroke="currentColor" fill="#888" stroke-width="0" viewBox="0 0 24 24" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 4.25c0-.966.784-1.75 1.75-1.75h17.5c.966 0 1.75.784 1.75 1.75v12.5a1.75 1.75 0 0 1-1.75 1.75h-9.586a.25.25 0 0 0-.177.073l-3.5 3.5A1.458 1.458 0 0 1 5 21.043V18.5H3.25a1.75 1.75 0 0 1-1.75-1.75ZM3.25 4a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h2.5a.75.75 0 0 1 .75.75v3.19l3.427-3.427A1.75 1.75 0 0 1 11.164 17h9.586a.25.25 0 0 0 .25-.25V4.25a.25.25 0 0 0-.25-.25ZM12 6a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4A.75.75 0 0 1 12 6Zm0 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>`;
 
 
+// const openMenu = document.querySelector('.openMenu')
+// const closeMenu = document.querySelector('.closeMenu')
+
+// const menu = document.querySelector('.menu')
+
+// openMenu.addEventListener('click', () => {
+//     menu.style.left = '0'
+//         menu.style.transition = '0.5s'
+// })
+
+// closeMenu.addEventListener('click', () => { 
+//     menu.style.left = '-100%'
+//     menu.style.transition = '0.5s'
+//     console.log('clicked')
+// })
+
 window.onload = function () {
     axios.get('http://localhost:8080/getHobbies')
         .then((response) => {
@@ -190,24 +206,24 @@ window.onload = function () {
 
 
         // Test modal
-    //     function createModalRes(message, onClose = () => { }) {
-    //         const modalOverlay = document.createElement('div');
-    //         modalOverlay.className = 'fixed z-[9999] inset-0 bg-black bg-opacity-50 flex items-center justify-center';
-    //         modalOverlay.innerHTML = `
-    //     <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
-    //         <p class="text-lg font-semibold mb-4">${message}</p>
-    //         <div class="flex justify-end">
-    //             <button id="ok-btn" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">OK</button>
-    //         </div>
-    //     </div>
-    // `;
-    //         document.body.appendChild(modalOverlay);
+        //     function createModalRes(message, onClose = () => { }) {
+        //         const modalOverlay = document.createElement('div');
+        //         modalOverlay.className = 'fixed z-[9999] inset-0 bg-black bg-opacity-50 flex items-center justify-center';
+        //         modalOverlay.innerHTML = `
+        //     <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+        //         <p class="text-lg font-semibold mb-4">${message}</p>
+        //         <div class="flex justify-end">
+        //             <button id="ok-btn" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">OK</button>
+        //         </div>
+        //     </div>
+        // `;
+        //         document.body.appendChild(modalOverlay);
 
-    //         document.getElementById('ok-btn').onclick = () => {
-    //             onClose();
-    //             modalOverlay.remove();
-    //         };
-    //     }
+        //         document.getElementById('ok-btn').onclick = () => {
+        //             onClose();
+        //             modalOverlay.remove();
+        //         };
+        //     }
 
 
 
@@ -304,7 +320,7 @@ window.onload = function () {
                         alert("Please select a reason to report the user");
                         return;
                     }
-                    
+
 
                     axios.post('http://localhost:8080/reportUser', {
                         Uid: currentUser?.uid,
@@ -313,7 +329,7 @@ window.onload = function () {
                         UidToReport: otherUser.userId
                     })
                         .then((response) => {
-                    
+
                             alert("User reported!")
 
                             callModal.style.display = "none";
@@ -507,12 +523,47 @@ window.onload = function () {
                 .catch((error) => {
                     console.log(error)
                 })
-
-
-
         });
     });
-
-
-
 }
+
+
+
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+        const sidebarUsername = document.querySelector('.sidebar-username')
+        const sidebarEmail = document.querySelector('.sidebar-email')
+
+
+        const greetText = document.querySelector('.greet-text')
+
+        axios.post('http://localhost:8080/getAccountByUid', { Uid: user.uid })
+            .then((res) => {
+                const { data } = res
+                sidebarUsername.innerHTML = data.Username
+                sidebarEmail.innerHTML = data.Email
+                greetText.innerHTML = `Welcome back,  ${data.Username} 🎉`
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+
+        axios.get('http://localhost:8080/user/' + user.uid)
+            .then((res) => {
+                const { data } = res;
+                console.log(data);
+                const profilePicture = document.querySelector('.profile-picture');
+                const imgHeader = document.querySelectorAll('.imgHeader');
+
+                imgHeader.forEach((img) => {
+                    img.src = data.imageUrl;
+                });
+
+                profilePicture.src = data.imageUrl;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+})

@@ -16,6 +16,22 @@ const auth = getAuth(app);
 
 
 
+const openMenu = document.querySelector('.openMenu')
+const closeMenu = document.querySelector('.closeMenu')
+
+const menu = document.querySelector('.menu')
+
+openMenu.addEventListener('click', () => {
+    menu.style.left = '0'
+        menu.style.transition = '0.5s'
+})
+
+closeMenu.addEventListener('click', () => { 
+    menu.style.left = '-100%'
+    menu.style.transition = '0.5s'
+    console.log('clicked')
+})
+
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -36,18 +52,107 @@ onAuthStateChanged(auth, (user) => {
                 console.error(error)
             })
 
-            axios.get('http://localhost:8080/user/' + user.uid)
+        axios.get('http://localhost:8080/user/' + user.uid)
             .then((res) => {
-              const { data } = res;
-              console.log(data);
-              const profilePicture = document.querySelector('.profile-picture');
-              profilePicture.src = data.imageUrl;
+                const { data } = res;
+                console.log(data);
+                const profilePicture = document.querySelector('.profile-picture');
+                const imgHeader = document.querySelectorAll('.imgHeader');
+
+                imgHeader.forEach((img) => {
+                    img.src = data.imageUrl;
+                });
+                
+                profilePicture.src = data.imageUrl;
             })
             .catch((error) => {
-              console.error(error);
+                console.error(error);
             });
 
         console.log(user)
+
+
+        axios.post('http://localhost:8080/getActivity', { Uid: user.uid })
+            .then((res) => {
+                const { data } = res
+                console.log(data.userActivity)
+
+                const today = new Date();
+                const yesterday = new Date(today);
+                yesterday.setDate(yesterday.getDate() - 1);
+                const lastWeek = new Date(today);
+                lastWeek.setDate(lastWeek.getDate() - 7);
+                const lastMonth = new Date(today);
+                lastMonth.setMonth(lastMonth.getMonth() - 1);
+
+                const groupedByPeriod = {
+                    today: [],
+                    yesterday: [],
+                    lastWeek: [],
+                    lastMonth: [],
+                    older: []
+                };
+
+                data.userActivity.forEach(activity => {
+                    const activityDate = new Date(parseInt(activity.Date));
+                    if (activityDate.toDateString() === today.toDateString()) {
+                        groupedByPeriod.today.push(activity);
+                    } else if (activityDate.toDateString() === yesterday.toDateString()) {
+                        groupedByPeriod.yesterday.push(activity);
+                    } else if (activityDate >= lastWeek) {
+                        groupedByPeriod.lastWeek.push(activity);
+                    } else if (activityDate >= lastMonth) {
+                        groupedByPeriod.lastMonth.push(activity);
+                    } else {
+                        groupedByPeriod.older.push(activity);
+                    }
+                });
+
+                console.log(groupedByPeriod);
+
+                const actCon = document.querySelector('.actCon');
+
+                actCon.innerHTML = '';
+
+                for (const period in groupedByPeriod) {
+                    if (groupedByPeriod[period].length === 0) {
+                        continue;
+                    }
+                    const container = document.createElement('div');
+
+                    const periodHeader = document.createElement('h3');
+                    periodHeader.innerHTML = period.charAt(0).toUpperCase() + period.slice(1);
+                    container.appendChild(periodHeader);
+
+                    const periodList = document.createElement('ul');
+                    periodList.className = 'flex flex-col gap-2';
+                    groupedByPeriod[period].forEach(activity => {
+                        const activityItem = document.createElement('li');
+                        activityItem.innerHTML = activity.Message;
+                        activityItem.className = 'bg-gray-200 p-2 rounded-md border border-gray-300';
+                        
+                        if (period === 'today') {
+                            activityItem.style.borderLeft = '4px solid green';
+                        } else if (period === 'yesterday') {
+                            activityItem.style.borderLeft = '4px solid blue';
+                        } else if (period === 'lastWeek') {
+                            activityItem.style.borderLeft = '4px solid gray';
+                        }
+
+                        periodList.appendChild(activityItem);
+                    });
+                    container.appendChild(periodList);
+                    container.className = 'flex flex-col gap-4';
+
+                    actCon.appendChild(container);
+                }
+
+                console.log(data.message)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+
     } else {
         // No user is signed in.
     }
