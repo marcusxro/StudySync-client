@@ -94,9 +94,6 @@ const saveProfile = async () => {
 
 
 
-
-
-
 pfpFile.addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -131,14 +128,10 @@ socket.on('connect', () => {
 
 
 socket.on('newAccount', (data) => {
-
     console.log('Real-time update from server:', data);
-
     userModal.style.display = 'none';
     outerDiv.style.display = 'block';
     interestModal.style.display = 'flex';
-
-
     // Update the DOM to show the new account
     console.log("data", data);
     window.location.reload();
@@ -151,9 +144,7 @@ socket.on('updatedAccount', (data) => {
     interestModal.style.display = 'none'
 });
 
-
 let user;
-
 
 onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
@@ -273,18 +264,16 @@ onAuthStateChanged(auth, (currentUser) => {
                                     console.error('Error fetching hobbies:', error.response?.data?.message || error.message);
                                 });
                         }
-                        submitBtn.innerHTML = 'Submit'; // Reset button text
+                        submitBtn.innerHTML = 'Submit'; 
                     })
                     .catch((error) => {
                         console.error('Error during account operation:', error.response?.data?.message || error.message);
                         editModal('Error: ' + error.response?.data?.message || error.message);
-                        submitBtn.innerHTML = 'Submit'; // Reset button text
+                        submitBtn.innerHTML = 'Submit'; 
                     });
                 }
             };
 
-
-            
 
 
             // Function to render hobbies in the list
@@ -298,12 +287,10 @@ onAuthStateChanged(auth, (currentUser) => {
                         listOfHobbies.appendChild(hobbyElement);
                     });
 
-                    // Randomize the order of hobbies
                     for (let i = listOfHobbies.children.length; i >= 0; i--) {
                         listOfHobbies.appendChild(listOfHobbies.children[Math.random() * i | 0]);
                     }
 
-                    // Add event listener to hobby items
                     listOfHobbies.addEventListener('click', (event) => {
                         if (event.target.classList.contains('hobbyItem')) {
                             const hobby = event.target.innerHTML;
@@ -336,14 +323,11 @@ onAuthStateChanged(auth, (currentUser) => {
 
         outerDiv.style.display = 'block';
         email.innerHTML = user?.email;
-
         if (user.emailVerified) {
             console.log('Email verified');
         } else {
             window.location.href = '../signin.html';
         }
-
-
 
 
         const listOfHobbies = document.querySelector('.listOfHobbies');
