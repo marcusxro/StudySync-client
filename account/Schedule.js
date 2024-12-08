@@ -98,6 +98,23 @@ onAuthStateChanged(auth, (user) => {
     const sidebarUsername = document.querySelector('.sidebar-username')
     const sidebarEmail = document.querySelector('.sidebar-email')
 
+    axios.get('http://localhost:8080/user/' + user.uid)
+    .then((res) => {
+        const { data } = res;
+        console.log(data);
+        const profilePicture = document.querySelector('.profile-picture');
+        const imgHeader = document.querySelectorAll('.imgHeader');
+
+        imgHeader.forEach((img) => {
+            img.src = data.imageUrl;
+        });
+
+        profilePicture.src = data.imageUrl;
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+    
 
     axios.post('http://localhost:8080/getScheduleByInvite', { Uid: user.uid })
       .then(async (res) => {
@@ -111,10 +128,37 @@ onAuthStateChanged(auth, (user) => {
           const reqItem = document.createElement('div');
           reqItem.className = 'mt-3 reqItem bg-[#888] text-white rounded-md p-3 cursor-pointer';
           reqItem.innerHTML = `
-        <p>You have been invited by ${await returnUser(schedule.Uid)} to ${schedule.EventName} </p>
+        <p>You have been invited by ${await returnUser(schedule.Uid)} to "${schedule.EventName}" </p>
           <button class="bg-green-500 px-5 text-white rounded-md p-1 mt-2">Accept</button>
          `;
           inviteContainer.appendChild(reqItem);
+
+          reqItem.querySelector('button').addEventListener('click', async () => {
+            axios.put('http://localhost:8080/acceptSchedule', { ScheduleId: schedule._id })
+              .then(async (res) => {
+                console.log(res);
+                reqItem.style.display = 'none';
+
+                axios.post('http://localhost:8080/postActivity',
+                  {
+                    Uid: schedule.Uid,
+                    Message: `Your schedule with ${await returnUser(user.uid)} has been accepted`,
+                    Date: Date.now()
+                  })
+                  .then((res) => {
+                    console.log(res);
+                  })
+                  .catch((error) => {
+                    console.error(error);
+                  });
+
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+            console.log(schedule._id)
+          });
+
         }
       })
       .catch((error) => {
@@ -128,6 +172,7 @@ onAuthStateChanged(auth, (user) => {
       const suffix = hour >= 12 ? 'PM' : 'AM';
       const formattedHour = hour % 12 || 12;
       return `${formattedHour}:${minutes} ${suffix}`;
+
     }
 
     axios.post('http://localhost:8080/getSchedule', { Uid: user.uid })
@@ -183,13 +228,11 @@ onAuthStateChanged(auth, (user) => {
             daySchedules.forEach(async schedule => {
               const eventElem = document.createElement('div');
               eventElem.className = 'event bg-[#f0f0f0] rounded-md p-1 mt-1 border-[1px] border-[#888] text-sm';
-           
+
               eventElem.textContent = `${schedule.EventName} (${formatTime(schedule.Time)})`;
               eventElem.title = `Event: ${schedule.EventName}\nTime: ${formatTime(schedule.Time)}\nDescription: ${schedule.Description}\nWith: ${await returnUser(schedule.SelectedUser)}`;
               dayElem.appendChild(eventElem);
             });
-
-
 
             if (daySchedules.length > 0) {
               dayElem.classList.add('clickable');
@@ -214,7 +257,6 @@ onAuthStateChanged(auth, (user) => {
                 const eventDetails = modal.querySelector('.event-details');
                 eventDetails.className = 'flex flex-col gap-3';
 
-
                 daySchedules.forEach(async schedule => {
                   const eventElem = document.createElement('div');
                   eventElem.className = 'event-detail';
@@ -222,17 +264,19 @@ onAuthStateChanged(auth, (user) => {
                     <p><strong>Event:</strong> ${schedule.EventName}</p>
                     <p><strong>Time:</strong> ${formatTime(schedule.Time)}</p>
                     <p><strong>Description:</strong> ${schedule.Description}</p>
-                    <p><strong>With:</strong> ${await returnUser(schedule.SelectedUser)}</p>
+                    <p><strong>With:</strong> ${await returnUser(user?.uid !== schedule.Uid ? schedule.Uid: schedule.SelectedUser)}</p>
                     <button class="join-button bg-[#565454] w-full text-white rounded-md p-3 cursor-pointer hidden">Join</button>
                   `;
 
                   eventDetails.appendChild(eventElem);
 
                   const isValid = new Date(`${schedule.Date}T${schedule.Time}`) - Date.now() <= 3 * 60 * 60 * 1000 && new Date(`${schedule.Date}T${schedule.Time}`) - Date.now() >= 0;
-               
+
                   if (isValid) {
                     const joinButton = eventElem.querySelector('.join-button');
                     joinButton.style.display = 'block';
+
+                    //add redicrection afterwards
                     joinButton.addEventListener('click', async () => {
                       console.log(schedule._id)
                     });
@@ -247,10 +291,7 @@ onAuthStateChanged(auth, (user) => {
               });
             }
 
-
-
             calendarBody.appendChild(dayElem);
-
           }
 
           const monthName = new Date(year, month).toLocaleString("default", { month: "long" });
@@ -295,9 +336,6 @@ onAuthStateChanged(auth, (user) => {
       .catch((error) => {
         console.error(error);
       });
-    // Add hover effect to show full details
-
-
 
 
 
@@ -317,7 +355,7 @@ onAuthStateChanged(auth, (user) => {
         data.friends.forEach(async friend => {
           const option = document.createElement('option');
           option.value = friend;
-    
+
           option.textContent = await returnUser(friend);
           SelectedUser.appendChild(option);
         });

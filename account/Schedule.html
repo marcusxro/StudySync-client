@@ -52,24 +52,20 @@
     <div class="outerDiv hidden w-full flex flex-row  h-[100vh] p-5">
         <user-modal></user-modal>
         <interest-modal></interest-modal>
-
         <!-- Sidebar Section -->
+        <user-header></user-header>
         <div class="flex h-full">
             <system-sidebar></system-sidebar>
 
             <!--  Calendar Section -->
-
             <div
                 class="addModal hidden fixed z-[5000000000] inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                 <div class="bg-white rounded-md w-full max-w-[400px] h-auto">
-
                     <div class="flex justify-between  mb-5 p-3">
                         <h1 class="text-2xl font-bold">Add meeting</h1>
                         <button class="closeModal bg-red-500 w-[30px] h-[30px] rounded-full text-white">X</button>
                     </div>
-
                     <div class="flex flex-col items-center gap-3 px-5  pb-5">
-
                         <input id="EventName" type="text" placeholder="Event Name"
                             class="w-full p-2 border border-gray-300 rounded-md">
                         <input id="Description" type="text" placeholder="Event Description"
@@ -84,65 +80,44 @@
                     </div>
                 </div>
             </div>
-
-
-
             <div
                 class="addNotif hidden p-3 fixed z-[5000000000] inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                 <div class="bg-white rounded-md w-full max-w-[500px] max-h-[500px] h-full overflow-y-auto">
                     <div class="flex justify-between p-3 pt-5">
                         <div class="font-semibold text-xl">
-                            Pending 
+                            Requests
                         </div>
-
-
                         <button class="closeNotif bg-red-500 w-[30px] h-[30px] rounded-full text-white">X</button>
                     </div>
-
                     <div class="p-3">
-
-
                         <p class="text-[#888]">
-                            You can see your pending requests here.
+                            You can see your requests here.
                         </p>
-
                         <div class="reqContainer h-full flex flex-col gap-3">
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
-            
             <div
                 class="addRequests hidden p-3 fixed z-[5000000000] inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                 <div class="bg-white rounded-md w-full max-w-[500px] max-h-[500px] h-full overflow-y-auto">
                     <div class="flex justify-between p-3 pt-5">
                         <div class="font-semibold text-xl">
-                            Invites 
+                            Invites
                         </div>
 
 
                         <button class="closeReq bg-red-500 w-[30px] h-[30px] rounded-full text-white">X</button>
                     </div>
-
                     <div class="p-3">
-
-
                         <p class="text-[#888]">
                             You can see here your friend's requests.
                         </p>
-
                         <div class="inviteContainer h-full flex flex-col gap-3">
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
             <div class="calendar w-full flex flex-col items-start">
                 <div class="flex gap-3 w-full overflow-auto items-center py-4">
 
@@ -236,6 +211,25 @@
 
 
     <script>
+
+        const openMenu = document.querySelector('.openMenu')
+        const closeMenu = document.querySelector('.closeMenu')
+
+        const menu = document.querySelector('.menu')
+
+        openMenu.addEventListener('click', () => {
+            menu.style.left = '0'
+            menu.style.transition = '0.5s'
+        })
+
+        closeMenu.addEventListener('click', () => {
+            menu.style.left = '-100%'
+            menu.style.transition = '0.5s'
+            console.log('clicked')
+        })
+
+
+
         const pageLink = window.location.href;
 
         const buttons = document.querySelectorAll('.dashboardPageItem');

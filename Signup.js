@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js'
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification,  GoogleAuthProvider, signInWithPopup, FacebookAuthProvider  } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification,  GoogleAuthProvider, signInWithPopup, FacebookAuthProvider  } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCTXicg-uyzAQyd62hwMfh0RHtRgd-bCBQ",
@@ -27,7 +27,6 @@ const successModal = document.querySelector('.successModal')
 const signUpForm = document.querySelector('.signup-form')
 
 const signUpbutton = document.getElementById('submit')
-
 let isLoading = false
 
 signUpForm?.addEventListener('submit', (e) => {
@@ -37,7 +36,6 @@ signUpForm?.addEventListener('submit', (e) => {
     if (isLoading) return
     isLoading = true
     signUpbutton.innerHTML = 'Loading...'
-
     if(!email?.value || !username?.value  || !password?.value  || !repeatPassword?.value ) {
         errorModal.innerHTML = 'Please fill all fields'
         errorModal.style.display = 'block'
@@ -48,7 +46,6 @@ signUpForm?.addEventListener('submit', (e) => {
         signUpbutton.innerHTML = 'Sign up'
         return
     }
-
     if (passwordValue !== repeatPassword.value) {
         errorModal.innerHTML = 'Passwords do not match'
         errorModal.style.display = 'block'
@@ -59,7 +56,6 @@ signUpForm?.addEventListener('submit', (e) => {
         signUpbutton.innerHTML = 'Sign up'
         return
     }
-
     createUserWithEmailAndPassword(auth, emailValue, passwordValue)
         .then((userCredential) => {
             const user = userCredential.user;
@@ -76,15 +72,11 @@ signUpForm?.addEventListener('submit', (e) => {
                             console.log('User created:', response.data);
 
                             if (response.status === 200) {
-
                                 console.log('Email verification sent!');
-
                                 username.value = ''
                                 email.value = ''
                                 password.value = ''
                                 repeatPassword.value = ''
-
-
                                 errorModal.style.display = 'none'
                                 successModal.style.display = 'block'
                                 successModal.innerHTML = 'Email verification sent!'
@@ -100,9 +92,6 @@ signUpForm?.addEventListener('submit', (e) => {
                             isLoading = false
                             signUpbutton.innerHTML = 'Sign up'
                         });
-
-
-
                 })
                 .catch((error) => {
                     console.error('Error sending email verification:', error);
@@ -119,25 +108,20 @@ signUpForm?.addEventListener('submit', (e) => {
             if (err.code === 'auth/email-already-in-use') {
                 errorModal.innerHTML = 'Email already in use'
                 errorModal.style.display = 'block'
-
                 setTimeout(() => {
                     errorModal.style.display = 'none'
                 }, 3000)
             }
-
             if (err.code === 'auth/weak-password') {
                 errorModal.innerHTML = 'Password is too weak'
                 errorModal.style.display = 'block'
-
                 setTimeout(() => {
                     errorModal.style.display = 'none'
                 }, 3000)
             }
-
             if (err.code === 'auth/invalid-email') {
                 errorModal.innerHTML = 'Invalid email'
                 errorModal.style.display = 'block'
-
                 setTimeout(() => {
                     errorModal.style.display = 'none'
                 }, 3000)

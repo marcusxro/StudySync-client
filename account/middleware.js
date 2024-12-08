@@ -122,11 +122,6 @@ socket.on('connect', () => {
 
 
 
-
-
-
-
-
 socket.on('newAccount', (data) => {
     console.log('Real-time update from server:', data);
     userModal.style.display = 'none';
@@ -151,6 +146,7 @@ onAuthStateChanged(auth, (currentUser) => {
         console.log('user logged in');
         console.log(currentUser);
         user = currentUser;
+
         submitBtn.addEventListener('click', () => {
             if (Username.value.length === 0) {
                 Username.style.border = '1px solid red';
@@ -275,7 +271,6 @@ onAuthStateChanged(auth, (currentUser) => {
             };
 
 
-
             // Function to render hobbies in the list
             const renderHobbies = (hobbies, listOfHobbies, searchVal, chosenInterests) => {
                 const renderHobbyItems = (filteredHobbies) => {
@@ -349,6 +344,8 @@ onAuthStateChanged(auth, (currentUser) => {
 
                     Username.value = "" || response.data.Username;
                     SelectValue.value = '';
+
+                    console.log("response", response.data.education_level)
                 }
 
                 if (response.data.interests.length === 0 && response.data.isDone === true) {

@@ -351,7 +351,7 @@ class userHeader extends HTMLElement {
     
       <header class="flex lg:hidden w-full items-center justify-between gap-5  border-b-[1px] border-b-[#ECECEC] pb-5">
         <div>
-          <div class="w-[50px] h-[50px] rounded-full">
+          <div class="w-[50px] h-[50px] rounded-full overflow-hidden">
             <img class="imgHeader"></img>
           </div>
         </div>

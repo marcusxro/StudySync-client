@@ -58,15 +58,10 @@
 
       <div class="hidden lg:block">
         <system-sidebar>
-
         </system-sidebar>
       </div>
-
-     <user-header>
-      
-     </user-header>
-
-
+      <user-header>
+      </user-header>
       <div class="w-full flex flex-col items-start">
         <div class="text-[1.5rem] font-bold text-[#565454] greet-text">
           Welcome back,
@@ -74,9 +69,6 @@
         <div class="text-sm text-[#A7A6A6] pb-1">
           Are you in a mood to study? kindly interact with the dashboard
         </div>
-
-
-
         <div
           class="flex gap-5 h-full max-h-[700px] min-h-[700px] flex-col lg:flex-row lg:min-h-[300px] w-full lg:max-h-[300px]  mt-5 border-t-[1px] border-t-[#ECECEC] pt-5 ">
 
@@ -93,7 +85,6 @@
               </div>
 
             </div>
-
 
             <div class="flex justify-end items-center">
 
@@ -124,17 +115,80 @@
 
         </div>
 
-        <div class="w-full min-h-[400px] h-full flex flex-col items-start mt-5">
+        <div class="w-full min-h-[400px] h-full flex flex-col items-start mt-5 overflow-x-hidden">
 
-          <div class="text-[#565454] text-[1.3rem] font-bold">
-            Scheduled meetings
+          <div class="flex w-full">
+
+            <div class="w-full">
+              <div class="text-[#565454] text-[1.3rem] font-bold">
+                Scheduled meetings
+              </div>
+
+              <p class="text-[#B8B7B7] text-sm">
+                Plan and execute your meetings.
+              </p>
+            </div>
+
+
+            <div class="flex items-center justify-center w-full max-w-[500px]">
+
+              <div class="calendar-header w-full">
+
+                <div class="currMonth font-bold flex">
+
+                </div>
+
+
+                <div class="view-options">
+                  <!--  drop down button para sa months  -->
+                  <button id="month-button" class="bg-gray-200 p-2 rounded">Month</button>
+
+                  <ul id="month-dropdown" class="absolute bg-white border rounded hidden">
+                    <li data-month="0" class="p-2 hover:bg-gray-200">January</li>
+                    <li data-month="1" class="p-2 hover:bg-gray-200">February</li>
+                    <li data-month="2" class="p-2 hover:bg-gray-200">March</li>
+                    <li data-month="3" class="p-2 hover:bg-gray-200">April</li>
+                    <li data-month="4" class="p-2 hover:bg-gray-200">May</li>
+                    <li data-month="5" class="p-2 hover:bg-gray-200">June</li>
+                    <li data-month="6" class="p-2 hover:bg-gray-200">July</li>
+                    <li data-month="7" class="p-2 hover:bg-gray-200">August</li>
+                    <li data-month="8" class="p-2 hover:bg-gray-200">September</li>
+                    <li data-month="9" class="p-2 hover:bg-gray-200">October</li>
+                    <li data-month="10" class="p-2 hover:bg-gray-200">November</li>
+                    <li data-month="11" class="p-2 hover:bg-gray-200">December</li>
+                  </ul>
+                </div>
+
+                <div class="next-prev-button">
+                  <button id="prev-month">&lt;</button>
+                  <button id="next-month">&gt;</button>
+                </div>
+
+              </div>
+
+            </div>
+
+
+            
           </div>
 
-          <p class="text-[#B8B7B7] text-sm">
-            Plan and execute your meetings.
-          </p>
-
           <div class="w-full h-full bg-[#fff] bordered mt-5 rounded-lg">
+
+
+            <div class="days-of-week w-full rounded-md">
+              <span>Sun</span>
+              <span>Mon</span>
+              <span>Tue</span>
+              <span>Wed</span>
+              <span>Thu</span>
+              <span>Fri</span>
+              <span>Sat</span>
+            </div>
+
+            <div class="calendar-body h-full w-full bg-[#ececec] p-2 rounded-md mt-2" id="calendar-body">
+
+            </div>
+
           </div>
 
         </div>

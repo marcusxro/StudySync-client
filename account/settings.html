@@ -6,59 +6,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" href="settings.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io@4.0.1/dist/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3490dc',
+                        'secondary': '#ffed4a',
+                        'danger': '#e3342f',
+                    }
+                }
+            }
+        }
+
+    </script>
+
 </head>
 
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="profile">
-                <div class="avatar"></div>
-                <div class="profile-info">
-                    <p class="name">Marcus S.</p>
-                    <p class="email">marcussalopaso@gmail.com</p>
-                </div>
-            </div>
-            <nav>
-                <ul>
-                    <li class="menu-item">Dashboard</li>
-                    <li class="menu-item">Find</li>
-                    <li class="menu-item">Schedule</li>
-                    <li class="menu-item active">Settings</li>
-                </ul>
-            </nav>
-        </aside>
+    <div class="outerDiv w-full h-full">
+        <user-modal></user-modal>
+        <interest-modal></interest-modal>
 
-        <!-- Main Content -->
-        <main>
-            <header>
-                <h1>Settings</h1>
-            </header>
-            <div class="settings-menu">
-                <ul>
-                    <li class="tab active">Profile</li>
-                    <li class="tab">Privacy</li>
-                    <li class="tab">Notifications</li>
-                    <li class="tab">Log out</li>
-                </ul>
-            </div>
-            <div class="settings-content">
-                <div class="profile-info">
-                    <div class="avatar-large"></div>
-                    <p class="username">@juantamad</p>
-                    <p class="friends">10 friends</p>
+        <div class="container flex flex-col justify-between w-full h-full p-3 lg:flex-row mx-auto">
+            <!-- Sidebar -->
+            <!-- tutorial modals -->
+
+
+            <system-sidebar></system-sidebar>
+
+            <user-header>
+            </user-header>
+
+            <!-- Main Content -->
+            <main class="w-full p-6 ">
+                <header>
+                    <h1 class="text-2xl font-bold mb-4">Settings</h1>
+                </header>
+                <div class="settings-menu flex border-b mb-4">
+                    <ul class="flex w-full">
+                        <li class="tab cursor-pointer active p-2 px-4 border-b-2 border-blue-500">Profile</li>
+                        <li class="tab cursor-pointer p-2 px-4 hover:border-b-2 hover:border-gray-300">Log out</li>
+                    </ul>
                 </div>
-                <form class="settings-form">
-                    <input type="email" placeholder="Email">
-                    <div class="buttons">
-                        <button type="button">Change username</button>
-                        <button type="button">Change password</button>
+                <div class="settings-content">
+                    <!-- Profile Tab Content -->
+                    <div class="tab-content active">
+                        <div class="profile-info mb-4 flex items-center flex-col">
+                            <div class="avatar-large w-24 h-24 bg-gray-500 rounded-full mb-2 overflow-hidden">
+                                <img class="imgSrcs w-full h-full object-cover" alt="">
+                            </div>
+                            <p class="username text-lg font-bold">@juantamad</p>
+                            <p class="friends text-sm text-gray-600"></p>
+                            <div class="flex gap-3">
+                                <div class="bg-[#535353] text-white p-3 rounded-md relative">
+                                    change profile picture
+
+                                    <input accept="image/*"
+                                        class="pfpFiles opacity-0 inset-0 w-full h-full  cursor-pointer absolute"
+                                        type="file">
+                                </div>
+                                <div
+                                    class="bg-[#535353] hidden saveBtrn text-white p-3 rounded-md relative cursor-pointer">
+                                    Save
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col lg:flex-row gap-4 mt-5">
+                            <div class="w-full">
+                                <input readonly="true" class="w-full border p-3 rounded mb-4 emailVal text-[#888]" type="text"
+                                    placeholder="Email">
+
+                                <input class="w-full border p-3 rounded mb-4 userVal" type="text" placeholder="Username">
+                                <button type="button" class="w-full bg-gray-500 text-white px-4 py-2 rounded">Change
+                                    username</button>
+                            </div>
+                            <div class="w-full">
+                                <input class="w-full border p-3 rounded mb-4" type="text" placeholder="Old Password">
+                                <input class="w-full border p-3 rounded mb-4" type="text" placeholder="New Password">
+                                <button type="button" class="w-full bg-gray-500 text-white px-4 py-2 rounded">Change
+                                    Password</button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start mt-4">
+                            <div class="bg-red-400 cursor-pointer text-white p-3 rounded-md">
+                                delete account
+                            </div>
+                        </div>
+
                     </div>
-                    <a href="#" class="delete-account">Delete Account</a>
-                </form>
-            </div>
-        </main>
+ 
+                    <div class="tab-content hidden">Logout confirmation here...</div>
+                </div>
+            </main>
+        </div>
+
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabs = document.querySelectorAll(".tab");
+            const tabContents = document.querySelectorAll(".tab-content");
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener("click", () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove("active", "border-blue-500"));
+                    tabContents.forEach(content => content.classList.add("hidden"));
+
+                    // Add active class to the selected tab and show the respective content
+                    tab.classList.add("active", "border-blue-500");
+                    tabContents[index].classList.remove("hidden");
+                });
+            });
+        });
+
+    </script>
+
+
+    <script src="middleware.js" type="module"></script>
+    <script src="settings.js" type="module"></script>
+    <script src="components.js"></script>
+
+
+
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.11.1/simplepeer.min.js"></script>
+
 </body>
 
 </html>
