@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metting</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="Signin.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io@4.0.1/dist/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3490dc',
+                        'secondary': '#ffed4a',
+                        'danger': '#e3342f',
+                    }
+                }
+            }
+        }
+
+    </script>
+    
+<style>
+    .sCsSbKP9yxvw4LQAeaTz {
+        /* background-color: #fff !important; */
+        /* Light button background */
+        border-radius: 20px !important;
+
+    }
+
+    #ZegoRoomFooter {
+        border-radius: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+
+
+    .ZegoRoomMobile_ZegoRoom {
+        background-color: #ffffff !important;
+    }
+
+    /* 
+    .t7CkP1l2e1KLqty5_18v {
+        border-radius: 30px !important;
+    } */
+
+    /* .j9ygOVxEl2nClTPs77Ta,
+    .tkC3S6XQehKbTEIfFYVM {
+        border-radius: 30px !important;
+    } */
+
+    .chat-gpt-quick-query-container {
+        display: none !important;
+    }
+
+    /* .jF_DhwXwBFswm5nphXHX {
+        background-color: #d0a5a5 !important;
+    } */
+
+    .active {
+        background-color: #565252;
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+
+    }
+
+    .notActive {
+        margin-left: 5px;
+    }
+
+    .bordered {
+        box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 29px -23px rgba(0, 0, 0, 0.75);
+    }
+</style>
+</head>
+
+<body>
+
+<div class="h-[100vh] w-full">
+    
+    <div class="w-full h-full flex items-center justify-center" id="root">
+
+    </div>
+
+</div>
+
+
+
+
+    <script src="components.js"></script>
+    <script src="Room.js" type="module"></script>
+
+
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.11.1/simplepeer.min.js"></script>
+
+    <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
+
+
+    <script src="https://unpkg.com/zego-superboard-web@2.15.3/index.js"></script>
+
+</body>
+
+</html>

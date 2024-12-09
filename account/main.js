@@ -1,8 +1,8 @@
-const socket = io('http://localhost:8080');
+const socket = io('https://studysyncserver.onrender.com');
 
 
 
-axios.get('http://localhost:8080/getHobbies')
+axios.get('https://studysyncserver.onrender.com/getHobbies')
     .then((response) => {
         console.log(response.data)
         let hobbies = response.data

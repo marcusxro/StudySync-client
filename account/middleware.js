@@ -80,7 +80,7 @@ const saveProfile = async () => {
     formData.append('profilePicture', pfpFile.files[0]);
 
     try {
-        const response = await axios.post('http://localhost:8080/uploadProfilePicture', formData, {
+        const response = await axios.post('https://studysyncserver.onrender.com/uploadProfilePicture', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -113,7 +113,7 @@ let isRender = false;
 console.log("user", userDetails)
 
 
-const socket = io('http://localhost:8080'); // Match the backend URL
+const socket = io('https://studysyncserver.onrender.com'); // Match the backend URL
 
 // Handle 'connect' event
 socket.on('connect', () => {
@@ -146,7 +146,7 @@ onAuthStateChanged(auth, (currentUser) => {
         console.log(currentUser);
         user = currentUser;
 
-        axios.post('http://localhost:8080/getAccountByUid', { Uid: user?.uid })
+        axios.post('https://studysyncserver.onrender.com/getAccountByUid', { Uid: user?.uid })
             .then((response) => {
                 const userData = response.data;
 
@@ -156,13 +156,13 @@ onAuthStateChanged(auth, (currentUser) => {
                     console.log('Real-time update from server:', data);
                     if (data.Uid === user.uid) {
                         console.log('Real-time update from server:', data);
-                        window.location.href = '/client/banned.html';
+                         window.location.href = '../banned.html';
                     }
 
                 });
 
                 if (userData.isBanned) {
-                    window.location.href = '/client/banned.html';
+                     window.location.href = '../banned.html';
                 }
             })
             .catch((error) => {
@@ -212,7 +212,7 @@ onAuthStateChanged(auth, (currentUser) => {
             formData.append('profilePicture', pfpFile.files[0]);  // Corrected field name
 
             // First check if the user exists by UID
-            axios.post('http://localhost:8080/getAccountByUid', { Uid: user?.uid })
+            axios.post('https://studysyncserver.onrender.com/getAccountByUid', { Uid: user?.uid })
                 .then((response) => {
                     console.log('User exists:', response.data);
 
@@ -245,14 +245,14 @@ onAuthStateChanged(auth, (currentUser) => {
 
                 if (userExists) {
 
-                    axios.post('http://localhost:8080/createAndUploadUser', formData, {
+                    axios.post('https://studysyncserver.onrender.com/createAndUploadUser', formData, {
                         headers: { 'Content-Type': 'multipart/form-data' }
                     })
                         .then((res) => {
                             if (res.status === 200) {
                                 window.location.reload();
                                 // Fetch hobbies and show modal only on successful update or create
-                                axios.get('http://localhost:8080/getHobbies')
+                                axios.get('https://studysyncserver.onrender.com/getHobbies')
                                     .then((hobbiesResponse) => {
                                         renderHobbies(hobbiesResponse.data, listOfHobbies, searchVal, chosenInterests);
                                         interestModal.style.display = 'flex';
@@ -266,13 +266,13 @@ onAuthStateChanged(auth, (currentUser) => {
                         })
 
                 } else {
-                    axios.post('http://localhost:8080/createAndUploadUser', formData, {
+                    axios.post('https://studysyncserver.onrender.com/createAndUploadUser', formData, {
                         headers: { 'Content-Type': 'multipart/form-data' }
                     })
                         .then((res) => {
                             if (res.status === 200) {
                                 // Fetch hobbies and show modal only on successful update or create
-                                axios.get('http://localhost:8080/getHobbies')
+                                axios.get('https://studysyncserver.onrender.com/getHobbies')
                                     .then((hobbiesResponse) => {
                                         renderHobbies(hobbiesResponse.data, listOfHobbies, searchVal, chosenInterests);
                                         interestModal.style.display = 'flex';
@@ -352,7 +352,7 @@ onAuthStateChanged(auth, (currentUser) => {
         const chosenInterests = [];
 
 
-        axios.post('http://localhost:8080/getAccountByUid', {
+        axios.post('https://studysyncserver.onrender.com/getAccountByUid', {
             Uid: user?.uid // Replace with the actual Uid
         })
             .then((response) => {
@@ -371,7 +371,7 @@ onAuthStateChanged(auth, (currentUser) => {
 
                 if (response.data.interests.length === 0 && response.data.isDone === true) {
                     interestModal.style.display = 'flex';
-                    axios.get('http://localhost:8080/getHobbies')
+                    axios.get('https://studysyncserver.onrender.com/getHobbies')
                         .then((response) => {
                             // Render hobbies
                             const renderHobbies = (hobbies) => {
@@ -462,7 +462,7 @@ onAuthStateChanged(auth, (currentUser) => {
             if (Loading) return;
             Loading = true;
             saveInterest.innerHTML = 'Loading...';
-            axios.put('http://localhost:8080/updateAccount', {
+            axios.put('https://studysyncserver.onrender.com/updateAccount', {
                 Uid: user?.uid,
                 interests: chosenInterests
             })

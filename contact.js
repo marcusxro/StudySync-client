@@ -27,7 +27,7 @@ form.addEventListener('submit', (e) => {
   const Email = document.querySelector('.Email').value
   const InterestsVal = Interests.options[Interests.selectedIndex].value
 
-  axios.post('http://localhost:8080/contact', {
+  axios.post('https://studysyncserver.onrender.com/contact', {
       Firstname: Firstname,
       Lastname: Lastname,
       Email: Email,

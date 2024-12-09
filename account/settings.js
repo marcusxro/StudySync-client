@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js'
-import { getAuth, onAuthStateChanged, EmailAuthProvider, reauthenticateWithCredential } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, reauthenticateWithPopup , EmailAuthProvider, reauthenticateWithCredential } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
 
 
 const firebaseConfig = {
@@ -94,6 +94,65 @@ onAuthStateChanged(getAuth(), (user) => {
         })
     })
 
+
+
+    acceptDelete.addEventListener("click", () => {
+        if (user) {
+          const providerData = user.providerData[0];
+      
+          if (providerData) {
+            if (providerData.providerId === "google.com") {
+              // Handle Google Provider reauthentication
+              const provider = new GoogleAuthProvider();
+      
+              reauthenticateWithPopup(user, provider)
+                .then(() => {
+                  // Now delete the user
+                  return user.delete();
+                })
+                .then(() => {
+                  alert("Account deleted successfully!");
+                  window.location.href = "../signin.html";
+                })
+                .catch((error) => {
+                  console.error("Error during deletion:", error);
+                  alert("Failed to delete account. Please try again.");
+                });
+            } else if (providerData.providerId === "password") {
+              // Handle Email/Password reauthentication
+              const email = user.email;
+              const password = prompt("Please enter your password to confirm:");
+      
+              if (password) {
+                const credential = EmailAuthProvider.credential(email, password);
+      
+                reauthenticateWithCredential(user, credential)
+                  .then(() => {
+                    // Now delete the user
+                    return user.delete();
+                  })
+                  .then(() => {
+                    alert("Account deleted successfully!");
+                    window.location.href = "../signin.html";
+                  })
+                  .catch((error) => {
+                    console.error("Error during deletion:", error);
+                    alert("Failed to delete account. Please ensure your password is correct.");
+                  });
+              } else {
+                alert("Password is required to delete the account.");
+              }
+            } else {
+              alert("Unsupported provider. Please contact support.");
+            }
+          } else {
+            alert("No provider information found. Please contact support.");
+          }
+        } else {
+          alert("No user is signed in.");
+        }
+      });
+      
     console.log(emailValue)
     let loading;
 
@@ -109,7 +168,7 @@ onAuthStateChanged(getAuth(), (user) => {
         formData.append('Uid', user.uid); // Ensure user.uid is available in your context
 
         axios
-            .post('http://localhost:8080/updateProfilePic', formData, {
+            .post('https://studysyncserver.onrender.com/updateProfilePic', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -137,7 +196,7 @@ onAuthStateChanged(getAuth(), (user) => {
     });
 
 
-    axios.post('http://localhost:8080/getAccountByUid', { Uid: user.uid })
+    axios.post('https://studysyncserver.onrender.com/getAccountByUid', { Uid: user.uid })
         .then((res) => {
             const { data } = res
             sidebarUsername.innerHTML = data.Username
@@ -165,7 +224,7 @@ onAuthStateChanged(getAuth(), (user) => {
                         alert('Please fill in all fields')
                         return
                     }
-                    axios.post('http://localhost:8080/changeUsername', { Uid: user.uid, Username: userValue.value, education_level: educLevel.value })
+                    axios.post('https://studysyncserver.onrender.com/changeUsername', { Uid: user.uid, Username: userValue.value, education_level: educLevel.value })
                         .then((res) => {
                             const { data } = res
                             console.log(data)
@@ -237,7 +296,7 @@ onAuthStateChanged(getAuth(), (user) => {
             console.error(error)
         })
 
-    axios.get('http://localhost:8080/user/' + user.uid)
+    axios.get('https://studysyncserver.onrender.com/user/' + user.uid)
         .then((res) => {
             const { data } = res;
             console.log(data);

@@ -62,7 +62,7 @@ signUpForm?.addEventListener('submit', (e) => {
             console.log('User signed up:', user);
             sendEmailVerification(user)
                 .then(() => {
-                    axios.post('http://localhost:8080/register', {
+                    axios.post('https://studysyncserver.onrender.com/register', {
                         Username: username.value,
                         Email: email.value,
                         Password: password.value,

@@ -83,7 +83,7 @@ closeRequests.addEventListener('click', () => {
 //reusable function to return user
 async function returnUser(userID) {
   try {
-    const res = await axios.post('http://localhost:8080/getAccountByUid', { Uid: userID });
+    const res = await axios.post('https://studysyncserver.onrender.com/getAccountByUid', { Uid: userID });
     console.log(res.data.Username);
     return res.data.Username;
   } catch (error) {
@@ -98,7 +98,7 @@ onAuthStateChanged(auth, (user) => {
     const sidebarUsername = document.querySelector('.sidebar-username')
     const sidebarEmail = document.querySelector('.sidebar-email')
 
-    axios.get('http://localhost:8080/user/' + user.uid)
+    axios.get('https://studysyncserver.onrender.com/user/' + user.uid)
     .then((res) => {
         const { data } = res;
         console.log(data);
@@ -116,7 +116,7 @@ onAuthStateChanged(auth, (user) => {
     });
     
 
-    axios.post('http://localhost:8080/getScheduleByInvite', { Uid: user.uid })
+    axios.post('https://studysyncserver.onrender.com/getScheduleByInvite', { Uid: user.uid })
       .then(async (res) => {
         const { data } = res;
         console.log(data);
@@ -134,12 +134,12 @@ onAuthStateChanged(auth, (user) => {
           inviteContainer.appendChild(reqItem);
 
           reqItem.querySelector('button').addEventListener('click', async () => {
-            axios.put('http://localhost:8080/acceptSchedule', { ScheduleId: schedule._id })
+            axios.put('https://studysyncserver.onrender.com/acceptSchedule', { ScheduleId: schedule._id })
               .then(async (res) => {
                 console.log(res);
                 reqItem.style.display = 'none';
 
-                axios.post('http://localhost:8080/postActivity',
+                axios.post('https://studysyncserver.onrender.com/postActivity',
                   {
                     Uid: schedule.Uid,
                     Message: `Your schedule with ${await returnUser(user.uid)} has been accepted`,
@@ -175,7 +175,7 @@ onAuthStateChanged(auth, (user) => {
 
     }
 
-    axios.post('http://localhost:8080/getSchedule', { Uid: user.uid })
+    axios.post('https://studysyncserver.onrender.com/getSchedule', { Uid: user.uid })
       .then(async (res) => {
         const { data } = res;
         console.log(data);
@@ -278,9 +278,8 @@ onAuthStateChanged(auth, (user) => {
 
                     //add redicrection afterwards
                     joinButton.addEventListener('click', async () => {
-                      console.log(schedule._id)
-                    });
-                  }
+                      window.open('specificroom.html?roomID=' + schedule._id, '_blank');
+                    });    }
 
                 });
 
@@ -339,7 +338,7 @@ onAuthStateChanged(auth, (user) => {
 
 
 
-    axios.post('http://localhost:8080/getAccountByUid', { Uid: user.uid })
+    axios.post('https://studysyncserver.onrender.com/getAccountByUid', { Uid: user.uid })
       .then((res) => {
         const { data } = res
         sidebarUsername.innerHTML = data.Username
@@ -378,12 +377,13 @@ onAuthStateChanged(auth, (user) => {
           const Description = document.getElementById('Description').value;
 
 
-          // if (new Date(DateVal).setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0)) {
-          //   alert('Date cannot be in the past');
-          //   loading = false;
-          //   addData.innerHTML = 'Add ';
-          //   return;
-          // }
+          const selectedDateTime = new Date(`${DateVal}T${Time}`);
+          if (selectedDateTime < new Date()) {
+            alert('Date and time cannot be in the past');
+            loading = false;
+            addData.innerHTML = 'Add ';
+            return;
+          }
 
           if (!EventName || !SelectedUser || !DateVal || !Time || !Description) {
             alert('Please fill all fields');
@@ -393,7 +393,7 @@ onAuthStateChanged(auth, (user) => {
           }
 
 
-          axios.post('http://localhost:8080/postSchedule', {
+          axios.post('https://studysyncserver.onrender.com/postSchedule', {
             EventName,
             SelectedUser,
             Uid: user.uid,
@@ -403,7 +403,18 @@ onAuthStateChanged(auth, (user) => {
           })
             .then((res) => {
               console.log(res);
-              axios.post('http://localhost:8080/postActivity',
+              axios.post('https://studysyncserver.onrender.com/postAnalytics', { 
+                Uid: user.uid,
+                Activity: "Schedule"
+            })
+            .then((response) => {
+                console.log(response);
+                console.log("Analytics sent");
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+              axios.post('https://studysyncserver.onrender.com/postActivity',
                 {
                   Uid: SelectedUser,
                   Message: `You have a new schedule with ${data.Username}, kindly confirm the schedule`,
@@ -447,7 +458,7 @@ onAuthStateChanged(auth, (user) => {
         console.error(error)
       })
 
-    axios.get('http://localhost:8080/user/' + user.uid)
+    axios.get('https://studysyncserver.onrender.com/user/' + user.uid)
       .then((res) => {
         const { data } = res;
         console.log(data);

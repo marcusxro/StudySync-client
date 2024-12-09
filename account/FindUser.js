@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 
-const socket = io('http://localhost:8080');
+const socket = io('https://studysyncserver.onrender.com');
 
 const rootDom = document.querySelector("#root");
 const searchButton = document.querySelector(".searchButton");
@@ -58,7 +58,7 @@ const reportIcon = `<svg stroke="currentColor" fill="#888" stroke-width="0" view
 // })
 
 window.onload = function () {
-    axios.get('http://localhost:8080/getHobbies')
+    axios.get('https://studysyncserver.onrender.com/getHobbies')
         .then((response) => {
             console.log(response.data)
             let hobbies = response.data
@@ -115,7 +115,7 @@ window.onload = function () {
             root.style.height = "95%";
 
             setTimeout(() => {
-                axios.get('http://localhost:8080/user/' + currentUser.uid)
+                axios.get('https://studysyncserver.onrender.com/user/' + currentUser.uid)
                     .then((res) => {
                         const { data } = res;
                         console.log(data);
@@ -141,6 +141,18 @@ window.onload = function () {
 
         joinButton.addEventListener("click", () => {
             joinRoom();
+            axios.post('https://studysyncserver.onrender.com/postAnalytics', { 
+                Uid: currentUser.uid,
+                Activity: "Find"
+            })
+            .then((response) => {
+                console.log(response);
+                console.log("Analytics sent");
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+            
 
         });
 
@@ -322,7 +334,7 @@ window.onload = function () {
                     }
 
 
-                    axios.post('http://localhost:8080/reportUser', {
+                    axios.post('https://studysyncserver.onrender.com/reportUser', {
                         Uid: currentUser?.uid,
                         Type: reportReason,
                         Message: message,
@@ -405,7 +417,7 @@ window.onload = function () {
             const roomUID = String(roomID).replace(" ", "_");
 
             let user;
-            axios.post('http://localhost:8080/getAccountByUid/', { Uid: currentUser.uid })
+            axios.post('https://studysyncserver.onrender.com/getAccountByUid/', { Uid: currentUser.uid })
                 .then((response) => {
                     user = response.data
 
@@ -518,7 +530,7 @@ window.onload = function () {
                         videoResolutionDefault: ZegoUIKitPrebuilt.VideoResolution_360P,
                     });
 
-                    // zp.addPlugins({ ZegoSuperBoardManager });
+                    zp.addPlugins({ ZegoSuperBoardManager });
                 })
                 .catch((error) => {
                     console.log(error)
@@ -538,7 +550,7 @@ onAuthStateChanged(auth, (user) => {
 
         const greetText = document.querySelector('.greet-text')
 
-        axios.post('http://localhost:8080/getAccountByUid', { Uid: user.uid })
+        axios.post('https://studysyncserver.onrender.com/getAccountByUid', { Uid: user.uid })
             .then((res) => {
                 const { data } = res
                 sidebarUsername.innerHTML = data.Username
@@ -549,7 +561,7 @@ onAuthStateChanged(auth, (user) => {
                 console.error(error)
             })
 
-        axios.get('http://localhost:8080/user/' + user.uid)
+        axios.get('https://studysyncserver.onrender.com/user/' + user.uid)
             .then((res) => {
                 const { data } = res;
                 console.log(data);

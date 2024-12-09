@@ -256,7 +256,7 @@ class headerHome extends HTMLElement {
       </div>
 
 
-      <nav>
+      <nav class="hidden lg:flex">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="About.html">About</a></li>
@@ -349,7 +349,7 @@ class userHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     
-      <header class="flex lg:hidden w-full items-center justify-between gap-5  border-b-[1px] border-b-[#ECECEC] pb-5">
+      <header class="flex xl:hidden w-full items-center justify-between gap-5  border-b-[1px] border-b-[#ECECEC] pb-5">
         <div>
           <div class="w-[50px] h-[50px] rounded-full overflow-hidden">
             <img class="imgHeader"></img>
