@@ -38,7 +38,7 @@
         <user-modal></user-modal>
         <interest-modal></interest-modal>
 
-        <div class="container flex flex-col justify-between w-full h-full p-3 lg:flex-row mx-auto">
+        <div class="container flex flex-col justify-between w-full h-full p-3 lg:flex-row mx-auto overflow-auto">
             <!-- Sidebar -->
             <!-- tutorial modals -->
 
@@ -49,6 +49,25 @@
             </user-header>
 
             <!-- Main Content -->
+
+            <div 
+            class="deleteAcc hidden p-3 fixed z-[5000000000] inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div>
+                        <div class="bg-white p-6 rounded-md w-full max-w-[500px]">
+                            <h1 class="text-2xl font-bold mb-4">Delete Account</h1>
+                            <p class="text-[#888]">
+                                We are sorry to see you go. If you have any feedback, please let us know.
+                                We assure you that we will take your feedback into consideration and improve our services
+                            </p>
+                            <div class="flex justify-end gap-3 mt-6">
+                                <button class="acceptDelete bg-red-500 text-white p-3 rounded-md">Delete</button>
+                                <button class="cancelDelete bg-gray-500 text-white p-3 rounded-md">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+
             <main class="w-full p-6 ">
                 <header>
                     <h1 class="text-2xl font-bold mb-4">Settings</h1>
@@ -66,8 +85,11 @@
                             <div class="avatar-large w-24 h-24 bg-gray-500 rounded-full mb-2 overflow-hidden">
                                 <img class="imgSrcs w-full h-full object-cover" alt="">
                             </div>
-                            <p class="username text-lg font-bold">@juantamad</p>
-                            <p class="friends text-sm text-gray-600"></p>
+                            <p class="username text-lg font-bold">@user</p>
+                            <div>
+                                <p class="education text-sm text-gray-600"></p>
+                                <p class="friends text-sm text-gray-600"></p>
+                            </div>
                             <div class="flex gap-3">
                                 <div class="bg-[#535353] text-white p-3 rounded-md relative">
                                     change profile picture
@@ -85,30 +107,58 @@
 
                         <div class="flex flex-col lg:flex-row gap-4 mt-5">
                             <div class="w-full">
-                                <input readonly="true" class="w-full border p-3 rounded mb-4 emailVal text-[#888]" type="text"
-                                    placeholder="Email">
+                                <input readonly="true" class="w-full border p-3 rounded mb-4 emailVal text-[#888]"
+                                    type="text" placeholder="Email">
 
-                                <input class="w-full border p-3 rounded mb-4 userVal" type="text" placeholder="Username">
-                                <button type="button" class="w-full bg-gray-500 text-white px-4 py-2 rounded">Change
-                                    username</button>
+                                <input class="w-full border p-3 rounded mb-4 userVal" type="text"
+                                    placeholder="Username">
+                                <select
+                                    class="educLevel w-full outline-none p-3 rounded-md mb-4 border-[1px] border-[#D4D5D7] text-[#888]"
+                                    >
+                                    <option value="">Education Level</option>
+                                    <option value="elementary">Elementary</option>
+                                    <option value="senior_high">Senior High</option>
+                                    <option value="college">College</option>
+                                    <option value="graduate_school">Graduate School</option>
+                                    <option value="no_education">No Education</option>
+                                    <!-- Added option for no education -->
+                                    <option value="not_applicable">Not Applicable</option>
+                                    <!-- Option for people who prefer not to disclose -->
+                                </select>
+                                <button type="button"
+                                    class="saveUsername w-full bg-gray-500 text-white px-4 py-2 rounded">Change
+                                    Info</button>
                             </div>
                             <div class="w-full">
-                                <input class="w-full border p-3 rounded mb-4" type="text" placeholder="Old Password">
-                                <input class="w-full border p-3 rounded mb-4" type="text" placeholder="New Password">
-                                <button type="button" class="w-full bg-gray-500 text-white px-4 py-2 rounded">Change
+                                <input class="oldPass w-full border p-3 rounded mb-4" type="text"
+                                    placeholder="Old Password">
+                                <input class="newPass w-full border p-3 rounded mb-4" type="text"
+                                    placeholder="New Password">
+                                <button type="button"
+                                    class="savePassword w-full bg-gray-500 text-white px-4 py-2 rounded">Change
                                     Password</button>
                             </div>
                         </div>
 
                         <div class="flex items-start mt-4">
-                            <div class="bg-red-400 cursor-pointer text-white p-3 rounded-md">
+                            <div class="deleteBtn bg-red-400 cursor-pointer text-white p-3 rounded-md">
                                 delete account
                             </div>
                         </div>
 
                     </div>
- 
-                    <div class="tab-content hidden">Logout confirmation here...</div>
+
+                    <div class="tab-content hidden">
+                        <div class="logout-info mb-4 flex items-center flex-col">
+                            <p class="text-lg font-bold">Are you sure you want to log out?</p>
+                            <div class="flex gap-3 mt-4">
+                                <div class="logOut bg-[#535353] text-white p-3 rounded-md relative cursor-pointer">
+                                    Log out
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

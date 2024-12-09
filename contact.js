@@ -10,43 +10,43 @@ const Interests = document.getElementById('interests')
 const Message = document.querySelector('.Message').value
 
 
-console.log(Interests)
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault()
+  e.preventDefault()
 
-    if(loading) return
-    loading = true
-    contactButton.innerHTML = 'Sending...'
+  if (loading) return
+  loading = true
+  contactButton.innerHTML = 'Sending...'
 
+  // Get the Message value inside the submit event handler
+  const Message = document.querySelector('.Message').value
+  console.log(Message)
 
-    const Firstname = document.querySelector('.Firstname').value
-    const Lastname =  document.querySelector('.Lastname').value
-    const Email = document.querySelector('.Email').value
-    const InterestsVal = Interests.options[Interests.selectedIndex].value
+  const Firstname = document.querySelector('.Firstname').value
+  const Lastname = document.querySelector('.Lastname').value
+  const Email = document.querySelector('.Email').value
+  const InterestsVal = Interests.options[Interests.selectedIndex].value
 
-    console.log
-
-    axios.post('http://localhost:8080/contact', {
-        Firstname: Firstname,
-        Lastname: Lastname,
-        Email: Email,
-        Interests: InterestsVal,
-        Message: Message
-    })
-        .then((res) => {
-            console.log(res)
-            alert('Message Sent Successfully')
-            loading = false
-            contactButton.innerHTML = 'Send Message'
-            form.reset()
-        })
-        .catch((e) => {
-            console.error(e)
-            alert('Error Sending Message')
-            loading = false
-            contactButton.innerHTML = 'Send Message'
-        })
+  axios.post('http://localhost:8080/contact', {
+      Firstname: Firstname,
+      Lastname: Lastname,
+      Email: Email,
+      Interests: InterestsVal,
+      Message: Message
+  })
+      .then((res) => {
+          console.log(res)
+          alert('Message Sent Successfully')
+          loading = false
+          contactButton.innerHTML = 'Send Message'
+          form.reset()
+      })
+      .catch((e) => {
+          console.error(e)
+          alert('Error Sending Message')
+          loading = false
+          contactButton.innerHTML = 'Send Message'
+      })
 })
 
 

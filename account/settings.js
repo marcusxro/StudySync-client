@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js'
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+import { getAuth, onAuthStateChanged, EmailAuthProvider, reauthenticateWithCredential } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
 
 
 const firebaseConfig = {
@@ -10,6 +10,8 @@ const firebaseConfig = {
     messagingSenderId: "787702087721",
     appId: "1:787702087721:web:f0b5704f7e4213b4f61c38"
 };
+
+
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -58,12 +60,45 @@ onAuthStateChanged(getAuth(), (user) => {
 
     const emailValue = document.querySelector('.emailVal')
     const userValue = document.querySelector('.userVal')
+    const saveUsername = document.querySelector('.saveUsername')
+    const savePassword = document.querySelector('.savePassword')
+
+    const oldPassword = document.querySelector('.oldPass')
+    const newPassword = document.querySelector('.newPass')
+
+    const education_level = document.querySelector('.education')
+
+    const educLevel = document.querySelector('.educLevel')
+
+    const showDelete = document.querySelector('.deleteBtn')
+    const deleteModal = document.querySelector('.deleteAcc')
+
+    const acceptDelete = document.querySelector('.acceptDelete')
+    const cancelDelete = document.querySelector('.cancelDelete')
+
+    const logOut = document.querySelector('.logOut')
+
+    showDelete.addEventListener('click', () => {
+        deleteModal.style.display = 'flex'
+    })
+
+    cancelDelete.addEventListener('click', () => {
+        deleteModal.style.display = 'none'
+    })
+
+    logOut.addEventListener('click', () => {
+        auth.signOut().then(() => {
+            window.location.href = '/client/signin.html'
+        }).catch((error) => {
+            console.error(error)
+        })
+    })
 
     console.log(emailValue)
     let loading;
 
     saveBtrn.addEventListener('click', () => {
-        if(loading) {
+        if (loading) {
             return;
         }
         loading = true;
@@ -72,7 +107,7 @@ onAuthStateChanged(getAuth(), (user) => {
         const formData = new FormData();
         formData.append('profilePicture', pfpFile.files[0]);
         formData.append('Uid', user.uid); // Ensure user.uid is available in your context
-    
+
         axios
             .post('http://localhost:8080/updateProfilePic', formData, {
                 headers: {
@@ -84,7 +119,7 @@ onAuthStateChanged(getAuth(), (user) => {
                 saveBtrn.innerHTML = 'Save';
                 if (res.status === 200) {
                     console.log('Profile picture uploaded successfully:', res.data.url);
-    
+
                     window.location.reload();
                 } else {
                     console.error('Unexpected response:', res);
@@ -100,7 +135,7 @@ onAuthStateChanged(getAuth(), (user) => {
                 alert('An error occurred while uploading the file');
             });
     });
-    
+
 
     axios.post('http://localhost:8080/getAccountByUid', { Uid: user.uid })
         .then((res) => {
@@ -110,10 +145,93 @@ onAuthStateChanged(getAuth(), (user) => {
             username.innerHTML = data.Username
             friends.innerHTML = data.friends.length + " Friends";
 
-            console.log(data.Username)
+            console.log(data.Username
+
+            )
             userValue.value = data.Username
             emailValue.value = data.Email
 
+            const defaultUsername = data.Username
+
+            education_level.innerHTML = data.education_level.toUpperCase()
+
+            educLevel.value = data.education_level
+
+            saveUsername.addEventListener('click', () => {
+                if (userValue.value === defaultUsername && educLevel.value === data.education_level) {
+                    alert('Data is the same as before')
+                } else {
+                    if (userValue.value === '' || educLevel.value === '') {
+                        alert('Please fill in all fields')
+                        return
+                    }
+                    axios.post('http://localhost:8080/changeUsername', { Uid: user.uid, Username: userValue.value, education_level: educLevel.value })
+                        .then((res) => {
+                            const { data } = res
+                            console.log(data)
+                            alert('Info changed successfully')
+                            window.location.reload()
+                        })
+                        .catch((error) => {
+                            console.error(error)
+                        })
+                }
+            })
+            console.log(user)
+
+            if (user.providerData.length > 0) {
+                user.providerData.forEach((profile) => {
+                    if (profile.providerId === 'google.com') {
+                        console.log('Google user')
+                        console.log(profile.photoURL)
+                        oldPassword.value = 'Google user'
+                        oldPassword.disabled = true
+                        newPassword.value = 'Google user'
+                        newPassword.disabled = true
+                        savePassword.value = 'Google user'
+                        savePassword.disabled = true
+                    } else if (profile.providerId === 'facebook.com') {
+                        console.log('Facebook user')
+                        console.log(profile.photoURL)
+                    } else if (profile.providerId === 'password') {
+                        console.log('Password user')
+                    } else {
+                        console.log('Unknown provider')
+                    }
+                })
+            }
+
+
+
+            savePassword.addEventListener('click', () => {
+                const user = auth.currentUser;
+
+                if (user) {
+                    // Create the credential using the old password
+                    const credential = EmailAuthProvider.credential(user.email, oldPassword.value);
+
+                    // Reauthenticate the user
+                    reauthenticateWithCredential(user, credential)
+                        .then(() => {
+                            // Update the password after successful reauthentication
+                            updatePassword(user, newPassword.value)
+                                .then(() => {
+                                    alert('Password changed successfully');
+                                    window.location.reload();
+                                })
+                                .catch((error) => {
+                                    console.error('Error updating password:', error);
+                                    alert('An error occurred while updating the password');
+                                });
+                        })
+                        .catch((error) => {
+                            console.error('Error reauthenticating:', error);
+                            alert('An error occurred while reauthenticating. Please ensure your old password is correct.');
+                        });
+                } else {
+                    alert('No user is signed in. Please sign in and try again.');
+                }
+            });
         })
         .catch((error) => {
             console.error(error)

@@ -227,6 +227,7 @@ onAuthStateChanged(auth, (user) => {
             .catch((error) => {
                 console.error(error)
             })
+
         axios.get('http://localhost:8080/user/' + user.uid)
             .then((res) => {
                 const { data } = res;
@@ -243,6 +244,7 @@ onAuthStateChanged(auth, (user) => {
             .catch((error) => {
                 console.error(error);
             });
+            
         console.log(user)
         axios.post('http://localhost:8080/getActivity', { Uid: user.uid })
             .then((res) => {

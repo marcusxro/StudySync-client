@@ -96,7 +96,7 @@ class interestModal extends HTMLElement {
         <div
         style="background: rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.18);"
 
-            class="userInterest hidden  flex fixed top-0 left-0 h-[100vh] bg-red-500 w-screen flex items-center justify-center p-3">
+            class="userInterest hidden  z-[9999999999999999999999999999999999] flex fixed top-0 left-0 h-[100vh] bg-red-500 w-screen flex items-center justify-center p-3">
 
             <div class="bg-[#ECECEC] border-[1px] border-[#D4D5D7]  relative rounded-md w-full max-w-[500px]">
                 <div class="p-3 border-b-[#D4D5D7] border-b-[1px]">

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You are banned</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io@4.0.1/dist/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3490dc',
+                        'secondary': '#ffed4a',
+                        'danger': '#e3342f',
+                    }
+                }
+            }
+        }
+
+    </script>
+</head>
+<body class="bg-[#ececec]">
+
+    <div class="h-screen flex items-center justify-center gap-3 flex-col">
+        <div class="text-[3rem] font-bold">You are banned</div>
+        <p class="text-[#888]">
+            You are banned from using this service. If you believe this is a mistake, please contact us at <a href="mailto:studysync@gmail.com">studysync@gmail.com</a>.
+        </p>
+        
+        <a
+        class="bg-[#3490dc] text-white px-3 py-1 rounded-md"
+         href="./signup.html">
+            Create a new account
+        </a>
+    </div>
+    
+</body>
+</html>

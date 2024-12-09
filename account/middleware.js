@@ -135,7 +135,6 @@ socket.on('newAccount', (data) => {
 socket.on('updatedAccount', (data) => {
     console.log('Real-time update from server:', data);
     console.log("data", data)
-
     interestModal.style.display = 'none'
 });
 
@@ -146,6 +145,29 @@ onAuthStateChanged(auth, (currentUser) => {
         console.log('user logged in');
         console.log(currentUser);
         user = currentUser;
+
+        axios.post('http://localhost:8080/getAccountByUid', { Uid: user?.uid })
+            .then((response) => {
+                const userData = response.data;
+
+                console.log(userData.isBanned);
+
+                socket.on('updateAccount', (data) => {
+                    console.log('Real-time update from server:', data);
+                    if (data.Uid === user.uid) {
+                        console.log('Real-time update from server:', data);
+                        window.location.href = '/client/banned.html';
+                    }
+
+                });
+
+                if (userData.isBanned) {
+                    window.location.href = '/client/banned.html';
+                }
+            })
+            .catch((error) => {
+                console.log('Error checking user existence:', error);
+            });
 
         submitBtn.addEventListener('click', () => {
             if (Username.value.length === 0) {
@@ -192,6 +214,8 @@ onAuthStateChanged(auth, (currentUser) => {
             // First check if the user exists by UID
             axios.post('http://localhost:8080/getAccountByUid', { Uid: user?.uid })
                 .then((response) => {
+                    console.log('User exists:', response.data);
+
                     // User exists, proceed to update the account and upload profile picture if needed
                     handleAccountCreationOrUpdate(response, formData);
                 })
@@ -204,69 +228,66 @@ onAuthStateChanged(auth, (currentUser) => {
             // Function to handle account creation or update
             const handleAccountCreationOrUpdate = (response, formData) => {
 
-                
-                const submitBtn = document.querySelector('.submitBtn'); 
+
+                const submitBtn = document.querySelector('.submitBtn');
                 const listOfHobbies = document.getElementById('listOfHobbies');
-                const interestModal = document.getElementById('interestModal'); 
+                const interestModal = document.getElementById('interestModal');
                 const searchVal = document.getElementById('searchVal');
                 const chosenInterests = [];
-            
+
                 // Determine if user exists based on response
                 const userExists = response ? true : false;
-            
+
                 // Update button text based on action
                 submitBtn.innerHTML = userExists ? 'Updating...' : 'Creating...';
-            
-                // API call for both creating or updating user
-                
-                if(userExists) {
 
-                    axios.put('http://localhost:8080/updateAccount', {
-                        Uid: user?.uid,
-                        Username: Username.value,
-                        education_level: SelectValue.value,
-                        isDone: true,
+                // API call for both creating or updating user
+
+                if (userExists) {
+
+                    axios.post('http://localhost:8080/createAndUploadUser', formData, {
+                        headers: { 'Content-Type': 'multipart/form-data' }
                     })
-                    .then((res) => {
-                        if (res.status === 200) {
-                            window.location.reload();
-                            // Fetch hobbies and show modal only on successful update or create
-                            axios.get('http://localhost:8080/getHobbies')
-                                .then((hobbiesResponse) => {
-                                    renderHobbies(hobbiesResponse.data, listOfHobbies, searchVal, chosenInterests);
-                                    interestModal.style.display = 'flex';
-          
-                                })
-                                .catch((error) => {
-                                    console.error('Error fetching hobbies:', error.response?.data?.message || error.message);
-                                });
-                        }
-                        submitBtn.innerHTML = 'Submit'; // Reset button text
-                    })
+                        .then((res) => {
+                            if (res.status === 200) {
+                                window.location.reload();
+                                // Fetch hobbies and show modal only on successful update or create
+                                axios.get('http://localhost:8080/getHobbies')
+                                    .then((hobbiesResponse) => {
+                                        renderHobbies(hobbiesResponse.data, listOfHobbies, searchVal, chosenInterests);
+                                        interestModal.style.display = 'flex';
+
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error fetching hobbies:', error.response?.data?.message || error.message);
+                                    });
+                            }
+                            submitBtn.innerHTML = 'Submit'; // Reset button text
+                        })
 
                 } else {
                     axios.post('http://localhost:8080/createAndUploadUser', formData, {
                         headers: { 'Content-Type': 'multipart/form-data' }
                     })
-                    .then((res) => {
-                        if (res.status === 200) {
-                            // Fetch hobbies and show modal only on successful update or create
-                            axios.get('http://localhost:8080/getHobbies')
-                                .then((hobbiesResponse) => {
-                                    renderHobbies(hobbiesResponse.data, listOfHobbies, searchVal, chosenInterests);
-                                    interestModal.style.display = 'flex';
-                                })
-                                .catch((error) => {
-                                    console.error('Error fetching hobbies:', error.response?.data?.message || error.message);
-                                });
-                        }
-                        submitBtn.innerHTML = 'Submit'; 
-                    })
-                    .catch((error) => {
-                        console.error('Error during account operation:', error.response?.data?.message || error.message);
-                        editModal('Error: ' + error.response?.data?.message || error.message);
-                        submitBtn.innerHTML = 'Submit'; 
-                    });
+                        .then((res) => {
+                            if (res.status === 200) {
+                                // Fetch hobbies and show modal only on successful update or create
+                                axios.get('http://localhost:8080/getHobbies')
+                                    .then((hobbiesResponse) => {
+                                        renderHobbies(hobbiesResponse.data, listOfHobbies, searchVal, chosenInterests);
+                                        interestModal.style.display = 'flex';
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error fetching hobbies:', error.response?.data?.message || error.message);
+                                    });
+                            }
+                            submitBtn.innerHTML = 'Submit';
+                        })
+                        .catch((error) => {
+                            console.error('Error during account operation:', error.response?.data?.message || error.message);
+                            editModal('Error: ' + error.response?.data?.message || error.message);
+                            submitBtn.innerHTML = 'Submit';
+                        });
                 }
             };
 
@@ -345,7 +366,7 @@ onAuthStateChanged(auth, (currentUser) => {
                     Username.value = "" || response.data.Username;
                     SelectValue.value = '';
 
-                    console.log("response", response.data.education_level)
+
                 }
 
                 if (response.data.interests.length === 0 && response.data.isDone === true) {
